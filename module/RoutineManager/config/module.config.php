@@ -6,7 +6,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'RoutineManager\Controller\Index' => 'RoutineManager\Controller\IndexController',
-            'routine-manager-admin/auth' => 'RoutineManagerAdmin\Controller\AuthController',
+            'rm-admin/auth' => 'RoutineManagerAdmin\Controller\AuthController',
             'tarefas' => 'RoutineManagerAdmin\Controller\TarefasController',
             'usuarios' => 'RoutineManagerAdmin\Controller\UsuariosController',
         ),
@@ -17,7 +17,7 @@ return array(
             'routinemanager-home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route' => '/routinemanager',
+                    'route' => '/',
                     'defaults' => array(
                         'controller' => 'RoutineManager\Controller\Index',
                         'action' => 'index',
@@ -49,7 +49,7 @@ return array(
                     'route' => '/admin/auth',
                     'defaults' => array(
                         'action' => 'index',
-                        'controller'=>'routine-manager-admin/auth'
+                        'controller'=>'rm-admin/auth'
                     ),
                 ),
             ),
@@ -59,7 +59,7 @@ return array(
                     'route' => '/admin/auth/logout',
                     'defaults' => array(
                         'action' => 'logout',
-                        'controller'=>'routine-manager-admin/auth'
+                        'controller'=>'rm-admin/auth'
                     ),
                 ),
             ),
@@ -69,6 +69,11 @@ return array(
       'RoutineManager' => 'layout/layout',
       'RoutineManagerAdmin' => 'layout/layout-admin'
     ),
+    'view_helpers' => [
+        'invokables' => [
+            'UserIdentity' => \RoutineManager\View\Helper\UserIdentity::class
+        ],
+    ],
     
     'view_manager' => array(
         'display_not_found_reason' => true,

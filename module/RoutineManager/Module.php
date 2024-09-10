@@ -87,11 +87,12 @@ class Module {
     }
 
     public function getViewHelperConfig() {
-        return array(
-            'invokables' => array(
-                'UserIdentity' => new View\Helper\UserIdentity()
-            )
-        );
-    }
+    return array(
+        'factories' => array(
+            'UserIdentity' => \RoutineManager\View\Helper\Factory\UserIdentityFactory::class,
+        ),
+    );
+}
+
 
 }

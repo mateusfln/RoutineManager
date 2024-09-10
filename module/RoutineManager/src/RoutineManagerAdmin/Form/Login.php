@@ -7,7 +7,7 @@ use Zend\Form\Form;
 class Login extends Form {
     
     public function __construct($name = null) {
-        parent::__construct('user');
+        parent::__construct('usuario');
         
         $this->setAttribute('method', 'post');
         
@@ -22,7 +22,7 @@ class Login extends Form {
             )
         ));
         $this->add(array(
-           'name' => 'password',
+           'name' => 'password', 
             'options' => array(
                 'type' => 'Password',
                 'label' => 'Senha'
