@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Usuario {
 
     /**
+     * @ORM\OneToMany(targetEntity="RoutineManager\Entity\Tarefa", mappedBy="usuario")
+     * @var Tarefa[]
+     */
+    private $tarefas;
+
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
@@ -37,15 +43,15 @@ class Usuario {
      */
     protected $senha;
 
-     /**
-     * @ORM\Column(type="datetime")
-     * @var datetime
-     */
-    protected $createdAt;
-    
     /**
      * @ORM\Column(type="datetime")
-     * @var datetime
+     * @var \DateTime
+     */
+    protected $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
      */
     protected $updatedAt;
 
@@ -58,6 +64,7 @@ class Usuario {
     public function __construct($options = null) {
         Configurator::configure($this, $options);
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->tarefas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId() {
@@ -92,9 +99,7 @@ class Usuario {
     }
 
     public function setSenha($senha) {
-
-        $hashSenha = $this->encryptPassword($senha);
-        $this->senha = $hashSenha;
+        $this->senha = $this->encryptPassword($senha);
         return $this;
     }
 
@@ -102,16 +107,18 @@ class Usuario {
         return $this->createdAt;
     }
 
-    public function setCreatedAt($createdAt) {
+    public function setCreatedAt(\DateTime $createdAt) {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     public function getUpdatedAt() {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt($updatedAt) {
+    public function setUpdatedAt(\DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
+        return $this;
     }
 
     public function getSalt() {
@@ -120,9 +127,9 @@ class Usuario {
 
     public function encryptPassword($senha) {
         $hashSenha = hash('sha512', $senha . $this->salt);
-        for ($i = 0; $i < 64000; $i++)
+        for ($i = 0; $i < 64000; $i++) {
             $hashSenha = hash('sha512', $hashSenha);
-        
+        }
         return $hashSenha;
     }
 
@@ -132,10 +139,8 @@ class Usuario {
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
             'password' => $this->getSenha(),
-            'createdAt' => $this->getCreatedAt(),
-            'updatedAt' => $this->getUpdatedAt(),
-            'salt' => $this->salt
+            'createdAt' => $this->getCreatedAt()->format('Y-m-d H:i:s'),
+            'updatedAt' => $this->getUpdatedAt()->format('Y-m-d H:i:s'),
         );
     }
-
 }

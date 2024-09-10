@@ -94,6 +94,12 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            'Logger' => function ($sm) {
+                $logger = new Zend\Log\Logger();
+                $writer = new Zend\Log\Writer\Stream('./data/logs/error.log');
+                $logger->addWriter($writer);
+                return $logger;
+            },
         ),
     ),
     'translator' => array(
@@ -106,6 +112,19 @@ return array(
             ),
         ),
     ),
+    'log' => [
+        'Zend\Log' => [
+            'writers' => [
+                [
+                    'name' => 'stream',
+                    'priority' => 1000,
+                    'options' => [
+                        'stream' => './data/logs/application.log',
+                    ],
+                ],
+            ],
+        ],
+    ],
     'doctrine' => array(
         'driver' => array(
             __NAMESPACE__ . '_driver' => array(
