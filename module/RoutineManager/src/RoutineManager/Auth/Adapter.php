@@ -44,7 +44,7 @@ class Adapter implements AdapterInterface {
         $usuario = $repository->findByEmailAndPassword($this->getUsername(),$this->getPassword());
         
         if($usuario) {
-           return new Result(Result::SUCCESS, array('usuario'=>$usuario),array('OK'));
+           return new Result(Result::SUCCESS, array('user'=>$usuario),array('OK'));
         }
         else
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array());

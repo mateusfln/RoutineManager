@@ -131,7 +131,7 @@ class Usuario {
             'id' => $this->getId(),
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
-            'password' => $this->getPassword(),
+            'password' => $this->getSenha(),
             'createdAt' => $this->getCreatedAt(),
             'updatedAt' => $this->getUpdatedAt(),
             'salt' => $this->salt

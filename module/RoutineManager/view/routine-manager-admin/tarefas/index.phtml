@@ -1,0 +1,37 @@
+<h1>Tarefas</h1>
+<br />
+
+<p>
+    <a href="<?php echo $this->url('routinemanager-admin',array('controller'=>'tarefas','action'=>'new')); ?>">Novo</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Status</th>
+        <th>Responsável</th>
+        <th>Ação</th>
+    </tr>
+    
+    <?php foreach($this->data as $tarefa): ?>
+    <tr>
+        <td><?php echo $tarefa->getId(); ?></td>
+        <td><?php echo $tarefa->getTitulo(); ?></td>
+        <td><?php echo $tarefa->getDescricao(); ?></td>
+        <td><?php echo $tarefa->getStatus(); ?></td>
+        <td><?php echo $tarefa->getUsuario()->getNome(); ?></td>
+        <td>
+            <a href="<?php echo $this->url('routinemanager-admin-interna',
+                    array('controller'=>'tarefas','action'=>'edit','id'=>$tarefa->getId())); ?>">Editar</a>
+            <a href="<?php echo $this->url('routinemanager-admin-interna',
+                    array('controller'=>'tarefas','action'=>'delete','id'=>$tarefa->getId())); ?>">Deletar</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    
+</table>
+<br />
+
+<?php echo $this->paginationControl($this->data,'Sliding','paginator'); ?>

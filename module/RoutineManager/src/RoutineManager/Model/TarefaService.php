@@ -2,7 +2,7 @@
 
 namespace RoutineManager\Model;
 
-class TarefasService {
+class TarefaService {
 
     /**
      * @var RoutineManager\Model\TarefaTable

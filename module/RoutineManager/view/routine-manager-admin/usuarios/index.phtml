@@ -1,0 +1,33 @@
+<h1>Usuários</h1>
+<br />
+
+<p>
+    <a href="<?php echo $this->url('routinemanager-admin',array('controller'=>'usuarios','action'=>'new')); ?>">Novo</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ação</th>
+    </tr>
+    
+    <?php foreach($this->data as $usuario): ?>
+    <tr>
+        <td><?php echo $usuario->getId(); ?></td>
+        <td><?php echo $usuario->getNome(); ?></td>
+        <td><?php echo $usuario->getEmail(); ?></td>
+        <td>
+            <a href="<?php echo $this->url('routinemanager-admin-interna',
+                    array('controller'=>'usuarios','action'=>'edit','id'=>$usuario->getId())); ?>">Editar</a>
+            <a href="<?php echo $this->url('routinemanager-admin-interna',
+                    array('controller'=>'usuarios','action'=>'delete','id'=>$usuario->getId())); ?>">Deletar</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    
+</table>
+<br />
+
+<?php echo $this->paginationControl($this->data,'Sliding','paginator'); ?>

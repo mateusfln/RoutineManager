@@ -3,9 +3,18 @@
 namespace RoutineManager;
 
 return array(
+    'controllers' => array(
+        'invokables' => array(
+            'RoutineManager\Controller\Index' => 'RoutineManager\Controller\IndexController',
+            'routine-manager-admin/auth' => 'RoutineManagerAdmin\Controller\AuthController',
+            'tarefas' => 'RoutineManagerAdmin\Controller\TarefasController',
+            'usuarios' => 'RoutineManagerAdmin\Controller\UsuariosController',
+        ),
+    ),
+
     'router' => array(
         'routes' => array(
-            'rm-home' => array(
+            'routinemanager-home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route' => '/routinemanager',
@@ -15,7 +24,7 @@ return array(
                     ),
                 ),
             ),
-            'rm-admin-interna' => array(
+            'routinemanager-admin-interna' => array(
                 'type' => 'Segment',
                 'options' => array(
                     'route' => '/admin/[:controller[/:action]][/:id]',
@@ -24,7 +33,7 @@ return array(
                     )
                 ),
             ),
-            'rm-admin' => array(
+            'routinemanager-admin' => array(
                 'type' => 'Segment',
                 'options' => array(
                     'route' => '/admin/[:controller[/:action][/page/:page]]',
@@ -34,37 +43,28 @@ return array(
                     ),
                 ),
             ),
-            'rm-admin-auth' => array(
+            'routinemanager-admin-auth' => array(
                 'type' => 'Literal',
                 'options' => array(
                     'route' => '/admin/auth',
                     'defaults' => array(
                         'action' => 'index',
-                        'controller'=>'routinemanager-admin/auth'
+                        'controller'=>'routine-manager-admin/auth'
                     ),
                 ),
             ),
-            'rm-admin-logout' => array(
+            'routinemanager-admin-logout' => array(
                 'type' => 'Literal',
                 'options' => array(
                     'route' => '/admin/auth/logout',
                     'defaults' => array(
                         'action' => 'logout',
-                        'controller'=>'routinemanager-admin/auth'
+                        'controller'=>'routine-manager-admin/auth'
                     ),
                 ),
             ),
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'RoutineManager\Controller\Index' => 'RoutineManager\Controller\IndexController',
-            'tarefas' => 'RoutineManagerAdmin\Controller\TarefasController',
-            'usuarios' => 'RoutineManagerAdmin\Controller\UsuariosController',
-            'routinemanager-admin/auth' => 'RoutineManagerAdmin\Controller\AuthController',
-        ),
-    ),
-    
     'module_layouts' => array(
       'RoutineManager' => 'layout/layout',
       'RoutineManagerAdmin' => 'layout/layout-admin'
@@ -78,7 +78,7 @@ return array(
         'exception_template' => 'error/index',
         'template_map' => array(
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'routinemanager/index/index' => __DIR__ . '/../view/routinemanager/index/index.phtml',
+            'routine-manager/index/index' => __DIR__ . '/../view/routine-manager/index/index.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),

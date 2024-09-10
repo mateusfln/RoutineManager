@@ -1,0 +1,14 @@
+<h1>Tarefas</h1>
+<br />
+
+<ul>
+    <?php foreach ($this->tarefas as $tarefa): ?>
+        <li><?php echo $tarefa; ?>
+            <ul>
+                <?php foreach ($tarefa->getUsuario() as $usuario): ?>
+                    <li><?php echo $usuario->getNome(); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endforeach; ?>
+</ul>
