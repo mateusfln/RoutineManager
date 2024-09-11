@@ -75,9 +75,9 @@ class Module {
                 },
                 'RoutineManagerAdmin\Form\Tarefa' => function($service) {
                     $em = $service->get('Doctrine\ORM\EntityManager');
-                    $repository = $em->getRepository('RoutineManager\Entity\Tarefa');
-                    $categorias = $repository->fetchPairs();
-                    return new TarefaFrm(null, $categorias);
+                    $repository = $em->getRepository('RoutineManager\Entity\Usuario');
+                    $usuarios = $repository->fetchPairs();
+                    return new TarefaFrm(null, $usuarios);
                 },
                 'RoutineManager\Auth\Adapter' => function($service) {
                     return new AuthAdapter($service->get('Doctrine\ORM\EntityManager'));

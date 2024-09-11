@@ -38,7 +38,19 @@ class Tarefa {
     protected $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="RoutineManager\Entity\Tarefa", inversedBy="usuario")
+     * @ORM\Column(type="datetime")
+     * @var \Datetime
+     */
+    protected $dataHoraInicio;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \Datetime
+     */
+    protected $dataHoraFim;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="RoutineManager\Entity\Usuario", inversedBy="tarefa")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     protected $usuario;
@@ -87,13 +99,31 @@ class Tarefa {
         $this->status = $status;
     }
 
+    public function getDataHoraInicio() {
+        return $this->dataHoraInicio;
+    }
+
+    public function setDataHoraInicio($dataHoraInicio) {
+        $this->dataHoraInicio = $dataHoraInicio;
+    }
+
+    public function getDataHoraFim() {
+        return $this->dataHoraFim;
+    }
+
+    public function setDataHoraFim($dataHoraFim) {
+        $this->dataHoraFim = $dataHoraFim;
+    }
+
     public function toArray() {
         return array(
             'id' => $this->getId(),
             'titulo' => $this->getTitulo(),
             'descricao' => $this->getDescricao(),
             'status' => $this->getStatus(),
-            'usuarioId' => $this->getUsuario()->getId(),
+            'dataHoraInicio' => $this->getDataHoraInicio(),
+            'dataHoraFim' => $this->getDataHoraFim(),
+            'usuario_id' => $this->getUsuario()->getId(),
         );
     }
 

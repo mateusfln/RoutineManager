@@ -2,7 +2,9 @@
 
 namespace RoutineManagerAdmin\Form;
 
+use DoctrineORMModule\Options\EntityManager;
 use Zend\Form\Form,
+    Zend\Form\Element,
     Zend\Form\Element\Select;
 
 class Tarefa extends Form {
@@ -11,10 +13,18 @@ class Tarefa extends Form {
 
     public function __construct($name = null, array $usuarios = null) {
         parent::__construct('tarefa');
-        $this->usuarios  = $usuarios;
+        $this->usuarios = $usuarios;
 
         $this->setAttribute('method', 'post');
         $this->setInputFilter(new TarefaFilter);
+
+        $usuario = new Select();
+        
+        $usuario->setLabel("Usuario")
+                ->setName("usuario")
+                ->setOptions(array('value_options' => $this->usuarios)
+        );
+        $this->add($usuario);
 
         $this->add(array(
             'name' => 'id',
@@ -35,16 +45,6 @@ class Tarefa extends Form {
             )
         ));
         
-        $usuario = new Select();
-        /**
-         * @todo verificar depois a melhor abordagem para definir 'usuario_id'
-         */
-        $usuario->setLabel("Usuario")
-                ->setName("usuario")
-                ->setOptions(array('value_options' => $this->usuarios)
-        );
-        $this->add($usuario);
-
         $this->add(array(
             'name' => 'descricao',
             'options' => array(
@@ -66,6 +66,32 @@ class Tarefa extends Form {
             'attributes' => array(
                 'id' => 'status',
                 'placeholder' => 'Defina o status da tarefa'
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'dataHoraInicio',
+            'type' => Element\Date::class,
+            'options' => array(
+                'label' => 'Data de inicio: ',
+                'format' => 'Y-m-d'
+            ),
+            'attributes' => array(
+                'id' => 'dataHoraInicio',
+                'placeholder' => 'Defina a data de inicio da tarefa'
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'dataHoraFim',
+            'type' => Element\Date::class,
+            'options' => array(
+                'label' => 'Data do fim: ',
+                'format' => 'Y-m-d'
+            ),
+            'attributes' => array(
+                'id' => 'dataHoraFim',
+                'placeholder' => 'Defina a data do fim da tarefa'
             ),
         ));
         

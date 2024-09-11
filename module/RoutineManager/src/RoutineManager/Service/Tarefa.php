@@ -16,7 +16,7 @@ class Tarefa extends AbstractService {
         $entity = new $this->entity($data);
         
         $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario']);
-        $entity->setUsuarioId($usuario->getId());
+        $entity->setUsuario($usuario);
         
         $this->em->persist($entity);
         $this->em->flush();
@@ -30,7 +30,7 @@ class Tarefa extends AbstractService {
         $entity = Configurator::configure($entity,$data);
         
         $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario']);
-        $entity->setUsuarioId($usuario->getId());
+        $entity->setUsuario($usuario);
         
         $this->em->persist($entity);
         $this->em->flush();

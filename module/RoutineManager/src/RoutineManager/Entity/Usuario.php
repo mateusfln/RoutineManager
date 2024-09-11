@@ -13,7 +13,6 @@ class Usuario {
 
     /**
      * @ORM\OneToMany(targetEntity="RoutineManager\Entity\Tarefa", mappedBy="usuario")
-     * @var Tarefa[]
      */
     private $tarefas;
 
@@ -95,6 +94,11 @@ class Usuario {
         return $this->salt;
     }
 
+    public function getTarefas()
+    {
+        return $this->tarefas;
+    }
+
     public function encryptPassword($password) {
         $hashSenha = hash('sha512', $password . $this->salt);
         for ($i = 0; $i < 64000; $i++) {
@@ -109,7 +113,8 @@ class Usuario {
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
             'password' => $this->getPassword(),
-            'salt' => $this->salt
+            'salt' => $this->salt,
+            'tarefas' => $this->getTarefas()
         );
     }
 }
