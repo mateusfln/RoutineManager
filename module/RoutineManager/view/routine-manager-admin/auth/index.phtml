@@ -1,20 +1,34 @@
-<h3>Login</h3>
-<br />
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-lg">
+          <div class="card-body p-5 text-center">
+          <?php if ($this->error): ?>
+            <p class="bg-danger"><b>Usuário ou senha inválidos</b></p>
+          <?php endif; ?>
+          <h3>Login</h3>
+            <br />
+          <?php
+            $form = $this->form;
 
-<?php if ($this->error): ?>
-    <p class="bg-danger"><b>Usuário ou senha inválidos</b></p>
-<?php endif; ?>
+            $form->setAttribute('action', $this->url('routinemanager-admin-auth'));
 
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
 
-<?php
-$form = $this->form;
+            <div class="form-group mb-4">
+                <?php echo $this->formRow($form->get('email'))?>
+            </div>
 
-$form->setAttribute('action', $this->url('routinemanager-admin-auth'));
+            <div class="form-group mb-4">
+              <?php echo $this->formRow($form->get('password'))?>
+            </div>
 
-$form->prepare();
-echo $this->form()->openTag($form);
-echo $this->formRow($form->get('email'));
-echo $this->formRow($form->get('password')) . "<br>";
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
-?>
+            <?php echo $this->formSubmit($form->get('submit'));?>
+            <?php echo $this->form()->closeTag();?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -32,8 +32,8 @@ class Tarefa {
     protected $descricao;
 
     /**
-     * @ORM\Column(type="text")
-     * @var string
+     * @ORM\Column(type="boolean")
+     * @var bool
      */
     protected $status;
 

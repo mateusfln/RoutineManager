@@ -3,42 +3,51 @@
 namespace RoutineManagerAdmin\Form;
 
 use Zend\Form\Form;
+use Zend\Form\Element;
 
-class Login extends Form {
-    
-    public function __construct($name = null) {
+class Login extends Form
+{
+    public function __construct($name = null)
+    {
         parent::__construct('usuario');
-        
         $this->setAttribute('method', 'post');
+
         
-        $this->add(array(
-           'name' => 'email',
-            'options' => array(
-                'type' => 'email',
-                'label' => 'Email'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Entre com o email'
-            )
-        ));
-        $this->add(array(
-           'name' => 'password', 
-            'options' => array(
-                'type' => 'Password',
-                'label' => 'Senha'
-            ),
-            'attributes' => array(
-                'type' => 'password'
-            )
-        ));
+        $this->add([
+            'name' => 'email',
+            'type' => Element\Email::class,
+            'options' => [
+                'label' => 'Email',
+            ],
+            'attributes' => [
+                'placeholder' => 'Digite seu email',
+                'required' => true,
+                'class' => 'form-control'
+            ],
+        ]);
+
         
-        $this->add(array(
-           'name' => 'submit',
-            'type' => 'Zend\Form\Element\Submit',
-            'attributes' => array(
+        $this->add([
+            'name' => 'password',
+            'type' => Element\Password::class,
+            'options' => [
+                'label' => 'Senha',
+            ],
+            'attributes' => [
+                'placeholder' => 'Digite sua senha',
+                'required' => true, 
+                'class' => 'form-control'
+            ],
+        ]);
+
+        
+        $this->add([
+            'name' => 'submit',
+            'type' => Element\Submit::class,
+            'attributes' => [
                 'value' => 'Login',
-                'class' => 'btn-success'
-            )
-        ));
+                'class' => 'btn btn-success', 
+            ],
+        ]);
     }
 }

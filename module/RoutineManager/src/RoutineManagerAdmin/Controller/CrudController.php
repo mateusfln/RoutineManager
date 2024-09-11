@@ -25,6 +25,9 @@ abstract class CrudController extends AbstractActionController {
         $list = $this->getEm()
                 ->getRepository($this->entity)
                 ->findAll();
+    //     $registrycount = $list->count();
+
+    //    var_dump($registrycount); die;
 
         $page = $this->params()->fromRoute('page');
 

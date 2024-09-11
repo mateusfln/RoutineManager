@@ -60,18 +60,18 @@ class Tarefa extends Form {
             ),
         ));
         
-        $this->add(array(
+        $this->add([
+            'type' => Element\Checkbox::class,
             'name' => 'status',
-            'options' => array(
-                'type' => 'text',
-                'label' => 'Status da tarefa'
-            ),
+            'options' => [
+                'label' => 'Feita',
+                'checked_value' => true,
+                'unchecked_value' => false,
+            ],
             'attributes' => array(
-                'class' => 'form-control mb-2',
-                'id' => 'status',
-                'placeholder' => 'Defina o status da tarefa'
-            ),
-        ));
+                'class' => 'form-check-input mb-2',
+            )
+        ]);
 
         $this->add(array(
             'name' => 'dataHoraInicio',
