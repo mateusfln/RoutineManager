@@ -69,11 +69,6 @@ return array(
       'RoutineManager' => 'layout/layout',
       'RoutineManagerAdmin' => 'layout/layout-admin'
     ),
-    'view_helpers' => [
-        'invokables' => [
-            'UserIdentity' => \RoutineManager\View\Helper\UserIdentity::class
-        ],
-    ],
     
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -100,7 +95,6 @@ return array(
                 $logger->addWriter($writer);
                 return $logger;
             },
-            'Zend\Authentication\AuthenticationService' => 'Auth\AuthenticationFactory'
         ),
     ),
     'translator' => array(

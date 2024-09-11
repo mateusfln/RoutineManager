@@ -22,27 +22,26 @@ class AuthController extends AbstractActionController {
         // var_dump($form);
         // die;
         if ($request->isPost()) {
-            $form->setData($request->getPost()->toArray());
+            $form->setData($request->getPost());
             if ($form->isValid()) {
                 $data = $request->getPost()->toArray();
 
-                $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-
+                $auth = new AuthenticationService;
                 $sessionStorage = new SessionStorage("RoutineManagerAdmin");
                 $auth->setStorage($sessionStorage);
 
                 $authAdapter = $this->getServiceLocator()->get('RoutineManager\Auth\Adapter');
                 $authAdapter->setUsername($data['email'])
-                        ->setPassword($data['password']);
+                            ->setPassword($data['password']);
                 
+                $result = $auth->authenticate($authAdapter);
                 // echo '<pre>';
                 // var_dump($auth->authenticate($authAdapter));
                 // die;
-                $result = $auth->authenticate($authAdapter);
                 if ($result->isValid()) {
                     $sessionStorage->write($auth->getIdentity()['user'], null);
 
-                    return $this->redirect()->toRoute("routinemanager-admin", array('controller' => 'index'));
+                    return $this->redirect()->toRoute("routinemanager-admin", array('controller' => 'tarefas'));
                 }else
                     $error = true;
             }

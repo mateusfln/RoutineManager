@@ -41,10 +41,10 @@ class Adapter implements AdapterInterface {
 
     public function authenticate() {
         $repository = $this->em->getRepository("RoutineManager\Entity\Usuario");
-        $usuario = $repository->findByEmailAndPassword($this->getUsername(),$this->getPassword());
+        $user = $repository->findByEmailAndPassword($this->getUsername(),$this->getPassword());
         
-        if($usuario) {
-           return new Result(Result::SUCCESS, array('user'=>$usuario),array('OK'));
+        if($user) {
+           return new Result(Result::SUCCESS, array('user'=>$user),array('OK'));
         }
         else
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array());

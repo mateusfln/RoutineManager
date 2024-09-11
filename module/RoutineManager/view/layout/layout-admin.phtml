@@ -29,12 +29,7 @@
                     <a class="brand" href="<?php echo $this->url('routinemanager-admin-auth') ?>">Routine Manager Admin</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                    <?php if ($this->UserIdentity('RoutineManagerAdmin')): ?>
-                                <li class="active"><a href="<?php echo $this->url('routinemanager-admin', array('controller' => 'tarefas')) ?>">Tarefas</a></li>
-                                <li class="active"><a href="<?php echo $this->url('routinemanager-admin', array('controller' => 'usuarios')) ?>">Usuários</a></li>
-                                <li class="active"><a href="<?php echo $this->url('routinemanager-admin-logout') ?>">Logout</a></li>
-                                
-                    <?php endif; ?>
+                    
                         </ul>
                     </div>
                 </div>

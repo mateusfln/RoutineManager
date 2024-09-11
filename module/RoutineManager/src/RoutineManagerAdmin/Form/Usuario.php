@@ -41,7 +41,7 @@ class Usuario extends Form {
         ));
 
         $this->add(array(
-           'name' => 'senha',
+           'name' => 'password',
             'options' => array(
                 'type' => 'Password',
                 'label' => 'Senha'

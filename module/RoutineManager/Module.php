@@ -44,7 +44,7 @@ class Module {
 
     public function init(ModuleManager $moduleManager) {
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
-        $sharedEvents->attach("RoutineManagerAdmin", 'dispatch', function($e) {
+        $sharedEvents->attach("RoutineManagerAdminAuth", 'dispatch', function($e) {
                     $auth = new AuthenticationService;
                     $auth->setStorage(new SessionStorage("RoutineManagerAdmin"));
 
@@ -86,12 +86,11 @@ class Module {
         );
     }
 
-    public function getViewHelperConfig() {
+    public function getViewHelperConfig(){
         return array(
-            'factories' => array(
-                'UserIdentity' => \RoutineManager\View\Helper\Factory\UserIdentityFactory::class,
-            ),
+            'invokables' => array(
+                'UserIdentity' => new View\Helper\UserIdentity()
+            ) 
         );
     }
-
 }

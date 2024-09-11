@@ -41,19 +41,7 @@ class Usuario {
      * @ORM\Column(type="text")
      * @var string
      */
-    protected $senha;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    protected $updatedAt;
+    protected $password;
 
     /**
      * @ORM\Column(type="text")
@@ -94,30 +82,12 @@ class Usuario {
         return $this;
     }
 
-    public function getSenha() {
-        return $this->senha;
+    public function getPassword() {
+        return $this->password;
     }
 
-    public function setSenha($senha) {
-        $this->senha = $this->encryptPassword($senha);
-        return $this;
-    }
-
-    public function getCreatedAt() {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt) {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    public function getUpdatedAt() {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTime $updatedAt) {
-        $this->updatedAt = $updatedAt;
+    public function setPassword($password) {
+        $this->password = $this->encryptPassword($password);
         return $this;
     }
 
@@ -125,8 +95,8 @@ class Usuario {
         return $this->salt;
     }
 
-    public function encryptPassword($senha) {
-        $hashSenha = hash('sha512', $senha . $this->salt);
+    public function encryptPassword($password) {
+        $hashSenha = hash('sha512', $password . $this->salt);
         for ($i = 0; $i < 64000; $i++) {
             $hashSenha = hash('sha512', $hashSenha);
         }
@@ -138,9 +108,8 @@ class Usuario {
             'id' => $this->getId(),
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
-            'password' => $this->getSenha(),
-            'createdAt' => $this->getCreatedAt()->format('Y-m-d H:i:s'),
-            'updatedAt' => $this->getUpdatedAt()->format('Y-m-d H:i:s'),
+            'password' => $this->getPassword(),
+            'salt' => $this->salt
         );
     }
 }

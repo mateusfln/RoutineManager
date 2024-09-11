@@ -6,14 +6,14 @@ use Doctrine\ORM\EntityRepository;
 
 class UsuarioRepository extends EntityRepository {
 
-    public function findByEmailAndPassword($email, $senha) {
+    public function findByEmailAndPassword($email, $password) {
 
-        $usuario = $this->findOneByEmail($email);
-        if ($usuario) {
-            $hashSenha = $usuario->encryptPassword($senha);
+        $user = $this->findOneByEmail($email);
+        if ($user) {
+            $hashSenha = $user->encryptPassword($password);
 
-            if ($hashSenha == $usuario->getSenha()) {
-                return $usuario;
+            if ($hashSenha == $user->getSenha()) {
+                return $user;
             }
             else
                 return false;
