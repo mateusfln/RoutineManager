@@ -10,6 +10,7 @@ class Usuario extends Form {
         parent::__construct('usuario');
         
         $this->setAttribute('method', 'post');
+        $this->setInputFilter(new UsuarioFilter);
         
         $this->add(array(
            'name' =>'id',
@@ -25,7 +26,8 @@ class Usuario extends Form {
                 'label' => 'Nome'
             ),
             'attributes' => array(
-                'placeholder' => 'Entre com o nome'
+                'placeholder' => 'Entre com o nome',
+                'class' => 'form-control mb-2',
             )
         ));
         
@@ -36,7 +38,8 @@ class Usuario extends Form {
                 'label' => 'Email'
             ),
             'attributes' => array(
-                'placeholder' => 'Entre com o email'
+                'placeholder' => 'Entre com o email',
+                'class' => 'form-control mb-2',
             )
         ));
 
@@ -47,7 +50,8 @@ class Usuario extends Form {
                 'label' => 'Senha'
             ),
             'attributes' => array(
-                'type' => 'password'
+                'type' => 'password',
+                'class' => 'form-control mb-2',
             )
         ));
         
@@ -56,7 +60,7 @@ class Usuario extends Form {
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
                 'value' => 'Salvar',
-                'class' => 'btn-success'
+                'class' => 'btn-success bg-success form-control mb-2',
             )
         ));
     }

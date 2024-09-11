@@ -279,6 +279,17 @@ class Usuario extends \RoutineManager\Entity\Usuario implements \Doctrine\ORM\Pr
     /**
      * {@inheritDoc}
      */
+    public function getTarefas()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTarefas', []);
+
+        return parent::getTarefas();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function encryptPassword($password)
     {
 

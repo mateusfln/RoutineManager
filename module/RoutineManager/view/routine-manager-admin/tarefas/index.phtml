@@ -2,31 +2,43 @@
 <br />
 
 <p>
-    <a href="<?php echo $this->url('routinemanager-admin',array('controller'=>'tarefas','action'=>'new')); ?>">Novo</a>
+    <a class="btn btn-outline-success " href="<?php echo $this->url('routinemanager-admin',array('controller'=>'tarefas','action'=>'new')); ?>">
+    <i class="bi bi-plus-square"></i>
+        Novo
+    </a>
 </p>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Status</th>
-        <th>Responsável</th>
-        <th>Ação</th>
-    </tr>
+<table class="table table-hover">
+    
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th>Responsável</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
     
     <?php foreach($this->data as $tarefa): ?>
     <tr>
         <td><?php echo $tarefa->getId(); ?></td>
         <td><?php echo $tarefa->getTitulo(); ?></td>
         <td><?php echo $tarefa->getDescricao(); ?></td>
-        <td><?php echo $tarefa->getStatus(); ?></td>
-        <td><?php echo $tarefa->getUsuario()->getNome(); ?></td>
+        <?php if($tarefa->getStatus() == 'Concluída'):?>
+            <td>
+                <span class="badge badge-pill bg-success"><?php echo $tarefa->getStatus(); ?></span>    
+            </td>
+        <?php endif;?>
         <td>
-            <a href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'tarefas','action'=>'edit','id'=>$tarefa->getId())); ?>">Editar</a>
-            <a href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'tarefas','action'=>'delete','id'=>$tarefa->getId())); ?>">Deletar</a>
+        <span class="badge badge-pill bg-dark"><?php echo $tarefa->getUsuario()->getNome();?></span>
+        </td>
+        <td>
+            <a  class="btn btn-outline-info" href="<?php echo $this->url('routinemanager-admin',
+                    array('controller'=>'tarefas','action'=>'edit','id'=>$tarefa->getId())); ?>"><i class="bi bi-pencil-square"></i>Editar</a>
+            <a  class="btn btn-outline-danger" href="<?php echo $this->url('routinemanager-admin',
+                    array('controller'=>'tarefas','action'=>'delete','id'=>$tarefa->getId())); ?>"><i class="bi bi-trash3"></i>Deletar</a>
         </td>
     </tr>
     <?php endforeach; ?>

@@ -123,7 +123,7 @@ class Tarefa {
             'status' => $this->getStatus(),
             'dataHoraInicio' => $this->getDataHoraInicio(),
             'dataHoraFim' => $this->getDataHoraFim(),
-            'usuario_id' => $this->getUsuario()->getId(),
+            'usuario' => $this->getUsuario(),
         );
     }
 

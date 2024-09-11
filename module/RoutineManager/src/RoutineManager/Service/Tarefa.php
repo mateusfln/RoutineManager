@@ -14,8 +14,14 @@ class Tarefa extends AbstractService {
     
     public function insert(array $data) {
         $entity = new $this->entity($data);
+        // echo '<pre>'; 
+        // var_dump($entity);
+        // die;
         
         $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario']);
+        // echo '<pre>'; 
+        // var_dump($usuario);
+        // die;
         $entity->setUsuario($usuario);
         
         $this->em->persist($entity);

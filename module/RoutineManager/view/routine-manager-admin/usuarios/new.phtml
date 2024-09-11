@@ -12,7 +12,7 @@ echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
 echo $this->formRow($form->get('nome'));
 echo $this->formRow($form->get('email'));
-echo $this->formRow($form->get('password')).PHP_EOL;
+echo $this->formRow($form->get('password'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
 ?>

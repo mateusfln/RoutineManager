@@ -2,16 +2,21 @@
 <br />
 
 <p>
-    <a href="<?php echo $this->url('routinemanager-admin',array('controller'=>'usuarios','action'=>'new')); ?>">Novo</a>
+    <a class="btn btn-outline-success " href="<?php echo $this->url('routinemanager-admin',array('controller'=>'usuarios','action'=>'new')); ?>">
+    <i class="bi bi-plus-square"></i>
+        Novo
+    </a>
 </p>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Ação</th>
-    </tr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ação</th>
+        </tr>
+    <thead>
     
     <?php foreach($this->data as $usuario): ?>
     <tr>
@@ -19,10 +24,10 @@
         <td><?php echo $usuario->getNome(); ?></td>
         <td><?php echo $usuario->getEmail(); ?></td>
         <td>
-            <a href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'usuarios','action'=>'edit','id'=>$usuario->getId())); ?>">Editar</a>
-            <a href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'usuarios','action'=>'delete','id'=>$usuario->getId())); ?>">Deletar</a>
+            <a  class="btn btn-outline-info" href="<?php echo $this->url('routinemanager-admin',
+                    array('controller'=>'usuarios','action'=>'edit','id'=>$usuario->getId())); ?>"><i class="bi bi-pencil-square"></i>Editar</a>
+            <a  class="btn btn-outline-danger" href="<?php echo $this->url('routinemanager-admin',
+                    array('controller'=>'usuarios','action'=>'delete','id'=>$usuario->getId())); ?>"><i class="bi bi-trash3"></i>Deletar</a>
         </td>
     </tr>
     <?php endforeach; ?>

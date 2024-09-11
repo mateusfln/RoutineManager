@@ -22,6 +22,7 @@ class Tarefa extends Form {
         
         $usuario->setLabel("Usuario")
                 ->setName("usuario")
+                ->setAttributes(array('class' => 'form-select mb-2'))
                 ->setOptions(array('value_options' => $this->usuarios)
         );
         $this->add($usuario);
@@ -40,6 +41,7 @@ class Tarefa extends Form {
                 'label' => 'Título'
             ),
             'attributes' => array(
+                'class' => 'form-control mb-2',
                 'id' => 'titulo',
                 'placeholder' => 'Entre com o titulo'
             )
@@ -52,6 +54,7 @@ class Tarefa extends Form {
                 'label' => 'Descrição'
             ),
             'attributes' => array(
+                'class' => 'form-control mb-2',
                 'id' => 'descricao',
                 'placeholder' => 'Entre com a Descrição'
             ),
@@ -64,6 +67,7 @@ class Tarefa extends Form {
                 'label' => 'Status da tarefa'
             ),
             'attributes' => array(
+                'class' => 'form-control mb-2',
                 'id' => 'status',
                 'placeholder' => 'Defina o status da tarefa'
             ),
@@ -77,6 +81,7 @@ class Tarefa extends Form {
                 'format' => 'Y-m-d'
             ),
             'attributes' => array(
+                'class' => 'form-control mb-2',
                 'id' => 'dataHoraInicio',
                 'placeholder' => 'Defina a data de inicio da tarefa'
             ),
@@ -90,6 +95,7 @@ class Tarefa extends Form {
                 'format' => 'Y-m-d'
             ),
             'attributes' => array(
+                'class' => 'form-control mb-2',
                 'id' => 'dataHoraFim',
                 'placeholder' => 'Defina a data do fim da tarefa'
             ),
@@ -100,8 +106,8 @@ class Tarefa extends Form {
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
                 'value' => 'Salvar',
-                'class' => 'btn-success'
-            )
+                'class' => 'btn-success form-control bg-success'
+                )
         ));
     }
 
