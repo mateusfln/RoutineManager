@@ -1,6 +1,6 @@
 <?php
 
-namespace Livraria\Entity;
+namespace RoutineManager\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

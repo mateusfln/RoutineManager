@@ -18,8 +18,6 @@ class Tarefa {
         $this->descricao = (isset($data['descricao'])) ? $data['descricao'] : null;
         $this->status = (isset($data['status'])) ? $data['status'] : null;
         //$this->usuario->setId() = (isset($data['usuarioId'])) ? $data['usuarioId'] : null;
-        $this->createdAt = (isset($data['createdAt'])) ? $data['createdAt'] : null;
-        $this->updatedAt = (isset($data['updatedAt'])) ? $data['updatedAt'] : null;
     }
     
 }

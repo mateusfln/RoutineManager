@@ -42,18 +42,6 @@ class Tarefa {
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     protected $usuario;
-    
-    /**
-     * @ORM\Column(type="datetime")
-     * @var datetime
-     */
-    protected $createdAt;
-    
-    /**
-     * @ORM\Column(type="datetime")
-     * @var datetime
-     */
-    protected $updatedAt;
 
     public function __construct($options = null) {
         Configurator::configure($this, $options);
@@ -99,22 +87,6 @@ class Tarefa {
         $this->status = $status;
     }
 
-    public function getCreatedAt() {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
-    }
-
-    public function getUpdatedAt() {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt($updatedAt) {
-        $this->updatedAt = $updatedAt;
-    }
-
     public function toArray() {
         return array(
             'id' => $this->getId(),
@@ -122,8 +94,6 @@ class Tarefa {
             'descricao' => $this->getDescricao(),
             'status' => $this->getStatus(),
             'usuarioId' => $this->getUsuario()->getId(),
-            'createdAt' => $this->getCreatedAt(),
-            'updatedAt' => $this->getUpdatedAt()
         );
     }
 

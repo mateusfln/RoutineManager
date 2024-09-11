@@ -100,6 +100,7 @@ return array(
                 $logger->addWriter($writer);
                 return $logger;
             },
+            'Zend\Authentication\AuthenticationService' => 'Auth\AuthenticationFactory'
         ),
     ),
     'translator' => array(

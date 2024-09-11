@@ -22,12 +22,11 @@ class AuthController extends AbstractActionController {
         // var_dump($form);
         // die;
         if ($request->isPost()) {
-            $form->setData($request->getPost());
-
+            $form->setData($request->getPost()->toArray());
             if ($form->isValid()) {
                 $data = $request->getPost()->toArray();
 
-                $auth = new AuthenticationService;
+                $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
 
                 $sessionStorage = new SessionStorage("RoutineManagerAdmin");
                 $auth->setStorage($sessionStorage);
@@ -36,9 +35,9 @@ class AuthController extends AbstractActionController {
                 $authAdapter->setUsername($data['email'])
                         ->setPassword($data['password']);
                 
-                echo '<pre>';
-                var_dump($auth->authenticate($authAdapter));
-                die;
+                // echo '<pre>';
+                // var_dump($auth->authenticate($authAdapter));
+                // die;
                 $result = $auth->authenticate($authAdapter);
                 if ($result->isValid()) {
                     $sessionStorage->write($auth->getIdentity()['user'], null);
