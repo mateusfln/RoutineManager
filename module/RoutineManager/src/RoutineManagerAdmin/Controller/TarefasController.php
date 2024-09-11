@@ -2,6 +2,7 @@
 
 namespace RoutineManagerAdmin\Controller;
 
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
 class TarefasController extends CrudController {
@@ -58,4 +59,27 @@ class TarefasController extends CrudController {
         return new ViewModel(array('form' => $form));
     }
 
+    public function CalendarioAction()
+    {
+        
+       // Obter todos os eventos
+       $events = $this->getEm()
+       ->getRepository($this->entity)
+       ->findAll();
+
+        // Converter eventos para o formato que o FullCalendar espera
+        $eventArray = [];
+        foreach ($events as $event) {
+            $eventArray[] = [
+                'event_id' => $event->getId(),  // ajuste conforme seu modelo
+                'title' => $event->getTitulo(),
+                'start' => $event->getDataHoraInicio()->format('Y-m-d\TH:i:s'), // formato ISO 8601
+                'end' => $event->getDataHoraFim()->format('Y-m-d\TH:i:s'), // formato ISO 8601
+            ];
+        }
+        
+        $eventArray = json_encode($eventArray);
+
+        return new ViewModel(array('eventsJson' => $eventArray));
+    }
 }
