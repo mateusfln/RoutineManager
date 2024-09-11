@@ -1,35 +1,37 @@
 <h1>Tarefas</h1>
 <br />
 
-<p>
-    <a href="<?php echo $this->url('routinemanager-admin',array('controller'=>'tarefas','action'=>'new')); ?>">Novo</a>
-</p>
-
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Status</th>
-        <th>Responsável</th>
-        <th>Ações</th>
-    </tr>
+<table class="table table-hover">
     
-    <?php foreach($this->tarefas as $tarefa): ?>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th>Responsável</th>
+        </tr>
+    </thead>
+    
+    <?php $numberOfRegisters = 0; foreach($this->tarefas as $tarefa): ?>
     <tr>
-        <td><?php echo $tarefa->getId(); ?></td>
         <td><?php echo $tarefa->getTitulo(); ?></td>
         <td><?php echo $tarefa->getDescricao(); ?></td>
-        <td><?php echo $tarefa->getStatus(); ?></td>
-        <td><?php echo 'funcionalidade não implementada'; ?></td>
+        <?php if($tarefa->getStatus() == True):?>
+            <td>
+                <span class="badge badge-pill bg-success">Concluída</span>    
+            </td>
+        <?php else:?>
+            <td>
+                <span class="badge badge-pill bg-secondary">Pendente</span>    
+            </td>
+        <?php endif;?>
         <td>
-            <a href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'tarefas','action'=>'edit','id'=>$tarefa->getId())); ?>">Editar</a>
-            <a href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'tarefas','action'=>'delete','id'=>$tarefa->getId())); ?>">Deletar</a>
+        <span class="badge badge-pill bg-dark"><?php echo $tarefa->getUsuario()->getNome();?></span>
         </td>
     </tr>
+    <?php $numberOfRegisters += 1;?>
     <?php endforeach; ?>
     
 </table>
 <br />
+
