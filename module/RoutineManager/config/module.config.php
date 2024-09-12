@@ -90,8 +90,8 @@ return array(
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
             'Logger' => function ($sm) {
-                $logger = new Zend\Log\Logger();
-                $writer = new Zend\Log\Writer\Stream('./data/logs/error.log');
+                $logger = new \Zend\Log\Logger;
+                $writer = new \Zend\Log\Writer\Stream('./data/logs/error.log');
                 $logger->addWriter($writer);
                 return $logger;
             },

@@ -1,132 +1,170 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <!-- CSS for full calender -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
-    <!-- JS for jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- JS for full calender -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
-    <!-- bootstrap css and js -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script>
+<head>
+  <meta charset='utf-8' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <!-- CSS for full calender -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+  <!-- JS for jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- JS for full calender -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+  <!-- bootstrap css and js -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
-
-    </script>
-  </head>
-  <body>
-    <!-- Start popup dialog box -->
-<div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-md" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="modalLabel">Adicionar nova tarefa</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="img-container">
-					<div class="row">
-						<div class="col-sm-12">  
-							<div class="form-group">
-							  <label for="tarefa-titulo">Titulo da tarefa</label>
-							  <input type="text" name="tarefa-titulo" id="tarefa-titulo" class="form-control" placeholder="Digite o nome da tarefa">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">  
-							<div class="form-group">
-							  <label for="tarefa-inicio">Início da tarefa</label>
-							  <input type="date" name="tarefa-inicio" id="tarefa-inicio" class="form-control onlydatepicker" placeholder="data de inicio da tarefa">
-							 </div>
-						</div>
-						<div class="col-sm-6">  
-							<div class="form-group">
-							  <label for="tarefa-fim">Fim da tarefa</label>
-							  <input type="date" name="tarefa-fim" id="tarefa-fim" class="form-control" placeholder="data do fim da tarefa">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" onclick="save_event()">Salvar Tarefa</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- End popup dialog box -->
-    <div id='calendar'></div>
-  </body>
   <script>
-$(document).ready(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+      });
+      calendar.render();
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Start Modal -->
+  <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Adicionar nova tarefa</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="img-container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="tarefa-titulo">Titulo da tarefa</label>
+                  <input type="text" name="tarefa-titulo" id="tarefa-titulo" class="form-control" placeholder="Digite o nome da tarefa">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="tarefa-descricao">Descricao</label>
+                  <textarea class="form-control" name="tarefa-descricao" id="tarefa-descricao" rows="3" placeholder="Descrição da tarefa"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="tarefa-inicio">Início da tarefa</label>
+                  <input type="date" name="tarefa-inicio" id="tarefa-inicio" class="form-control onlydatepicker" placeholder="data de inicio da tarefa">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="tarefa-fim">Fim da tarefa</label>
+                  <input type="date" name="tarefa-fim" id="tarefa-fim" class="form-control" placeholder="data do fim da tarefa">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="tarefa-usuario_id">Usuário Responsável</label>
+                <select id="tarefa-usuario_id" class="form-select" name="tarefa-usuario_id">
+                  <?php foreach ($users as $id => $usuario): ?>
+                    <option value="<?= $id ?>"><?= $usuario ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="tarefa-status" id="tarefa-status" value="1">
+                  <label class="form-check-label" for="tarefa-status">
+                    Feita
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="salvarTarefa()">Salvar Tarefa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+  <div id='calendar'></div>
+</body>
+<script>
+  $(document).ready(function() {
     var events = <?php echo $this->eventsJson; ?>;
 
-    console.log(events);
 
     $('#calendar').fullCalendar({
-        defaultView: 'month',
-        timeZone: 'local',
-        editable: true,
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end) {
-            $('#tarefa-inicio').val(moment(start).format('YYYY-MM-DD'));
-            $('#tarefa-fim').val(moment(end).format('YYYY-MM-DD'));
-            $('#event_entry_modal').modal('show');
-        },
-        events: events,
-        eventRender: function(event, element, view) {
-            element.bind('click', function() {
-                alert(event.event_id);
-            });
-        }
+      defaultView: 'month',
+      timeZone: 'local',
+      editable: true,
+      selectable: true,
+      selectHelper: true,
+      select: function(start, end) {
+        $('#tarefa-inicio').val(moment(start).format('YYYY-MM-DD'));
+        $('#tarefa-fim').val(moment(end).format('YYYY-MM-DD'));
+        $('#event_entry_modal').modal('show');
+      },
+      events: events,
+      eventRender: function(event, element, view) {
+        element.bind('click', function() {
+          alert(event.event_id);
+        });
+      }
     });
-});
+  });
 
-function save_event() {
+  function salvarTarefa() {
     var titulo = $("#tarefa-titulo").val();
-    var titulo = $("#tarefa-inicio").val();
+    var usuario = $("#tarefa-usuario_id").val();
+    var descricao = $("#tarefa-descricao").val();
+    var dataHoraInicio = $("#tarefa-inicio").val();
     var dataHoraFim = $("#tarefa-fim").val();
-    if (titulo == "" || dataHoraInicio == "" || dataHoraFim == "") {
-        alert("Please enter all required details.");
-        return false;
+    var status = $("#tarefa-status").val();
+    if (titulo == "" || dataHoraInicio == "" || dataHoraFim == "" || usuario =="" || descricao=="" || status=="") {
+      alert("Por favor, preencha todos os campos.");
+      return false;
     }
+
     $.ajax({
-        url: "save_event.php",
-        type: "POST",
-        dataType: 'json',
-        data: {titulo: titulo, titulo: titulo, dataHoraFim: dataHoraFim},
-        success: function(response) {
-            $('#event_entry_modal').modal('hide');
-            if (response.status == true) {
-                alert(response.msg);
-                location.reload();
-            } else {
-                alert(response.msg);
-            }
-        },
-        error: function(xhr, status) {
-            console.log('ajax error = ' + xhr.statusText);
-            alert(response.msg);
+      url: "calendario",
+      type: "POST",
+      dataType: 'json',
+      data: JSON.stringify({
+        titulo: titulo,
+        usuario: usuario,
+        descricao: descricao,
+        dataHoraInicio: dataHoraInicio,
+        dataHoraFim: dataHoraFim,
+        status: status
+      }),
+      success: function(response) {
+        $('#event_entry_modal').modal('hide');
+        if (response.status == true) {
+          alert(response.msg);
+          location.reload();
+        } else {
+          alert(response.msg);
         }
+      },
+      error: function(xhr, status) {
+        console.log('ajax error = ' + xhr.statusText);
+        alert(response.msg);
+      }
     });
     return false;
-}
+  }
 </script>
 
 </html>

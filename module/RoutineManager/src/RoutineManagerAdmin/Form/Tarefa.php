@@ -19,7 +19,6 @@ class Tarefa extends Form {
         $this->setInputFilter(new TarefaFilter);
 
         $usuario = new Select();
-        
         $usuario->setLabel("Usuario")
                 ->setName("usuario")
                 ->setAttributes(array('class' => 'form-select mb-2'))
@@ -65,8 +64,7 @@ class Tarefa extends Form {
             'name' => 'status',
             'options' => [
                 'label' => 'Feita',
-                'checked_value' => true,
-                'unchecked_value' => false,
+                'value' => 1
             ],
             'attributes' => array(
                 'class' => 'form-check-input mb-2',

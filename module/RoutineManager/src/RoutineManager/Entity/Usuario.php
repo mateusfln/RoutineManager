@@ -2,6 +2,7 @@
 
 namespace RoutineManager\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Usuario {
 
+
+    public function __construct($options = null) {
+        Configurator::configure($this, $options);
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->tarefas = new ArrayCollection();
+    }
     /**
      * @ORM\OneToMany(targetEntity="RoutineManager\Entity\Tarefa", mappedBy="usuario")
      */
@@ -47,12 +54,6 @@ class Usuario {
      * @var string
      */
     protected $salt;
-
-    public function __construct($options = null) {
-        Configurator::configure($this, $options);
-        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $this->tarefas = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function getId() {
         return $this->id;
