@@ -145,7 +145,7 @@
         status: status
       }),
       success: function(response) {
-        console.log('Response:', response); // Log the full response object
+        console.log('Response:', response);
         $('#event_entry_modal').modal('hide');
         if (response.status == true) {
           alert(response.msg);
@@ -155,7 +155,7 @@
         }
       },
       error: function(xhr, status, error) {
-        console.log('AJAX Error:', xhr.status, status, error); // Log detailed error info
+        console.log('AJAX Error:', xhr.status, status, error);
       }
     });
     return false;

@@ -19,9 +19,7 @@ abstract class AbstractService {
     
     public function insert(array $data) {
         
-        $entity = new $this->entity($data);
-        //var_dump($data);die;
-        
+        $entity = new $this->entity($data);        
         $this->em->persist($entity);
         $this->em->flush();
         return $entity;

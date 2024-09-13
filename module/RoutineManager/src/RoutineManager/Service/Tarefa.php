@@ -19,12 +19,8 @@ class Tarefa extends AbstractService {
         $entity->setDescricao($data['descricao']);
         $entity->setStatus($data['status']);
         $entity->setDataHoraInicio(new \DateTime($data['dataHoraInicio']));
-        $entity->setDataHoraFim(new \DateTime($data['dataHoraFim']));
-
-        // var_dump($entity);die;
-        
+        $entity->setDataHoraFim(new \DateTime($data['dataHoraFim']));        
         $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario_id']);
-        // var_dump($usuario);die;
         $entity->setUsuario($usuario);
         
         $this->em->persist($entity);
@@ -44,7 +40,6 @@ class Tarefa extends AbstractService {
         $entity->setDataHoraFim(new \DateTime($data['dataHoraFim']));
         $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario_id']);
         $entity->setUsuario($usuario);
-        // var_dump($entity);die;
 
         $this->em->persist($entity);
         $this->em->flush();

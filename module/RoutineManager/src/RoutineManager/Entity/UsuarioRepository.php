@@ -10,8 +10,7 @@ class UsuarioRepository extends EntityRepository {
         $user = $this->findOneByEmail($email);
         if ($user) {
             $hashSenha = $user->encryptPassword($password);
-           // var_dump($hashSenha );die;
-
+            
             if ($hashSenha == $user->getPassword()) {
                 return $user;
             }

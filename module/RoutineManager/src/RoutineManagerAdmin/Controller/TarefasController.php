@@ -27,8 +27,6 @@ class TarefasController extends CrudController
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $service = $this->getServiceLocator()->get($this->service);
-                            //echo '<pre>';var_dump($request->getPost()->toArray());die;
-
                 $service->insert($request->getPost()->toArray());
 
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
@@ -52,8 +50,6 @@ class TarefasController extends CrudController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                //var_dump($request->getPost()->toArray());die;
-
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->update($request->getPost()->toArray());
 

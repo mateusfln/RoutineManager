@@ -13,9 +13,9 @@
             <th scope="col">ID</th>
             <th scope="col">Título</th>
             <th scope="col">Descrição</th>
-            <th scope="col" class="text-center">Status</th> <!-- Centraliza o texto da coluna Status -->
-            <th scope="col" class="text-center">Responsável</th> <!-- Centraliza o texto da coluna Responsável -->
-            <th scope="col" class="text-center">Ação</th> <!-- Centraliza o texto da coluna Ação -->
+            <th scope="col" class="text-center">Status</th> 
+            <th scope="col" class="text-center">Responsável</th> 
+            <th scope="col" class="text-center">Ação</th> 
         </tr>
     </thead>
     <tbody>
@@ -25,19 +25,19 @@
             <td><?php echo $tarefa->getTitulo(); ?></td>
             <td><?php echo $tarefa->getDescricao(); ?></td>
             <?php if ($tarefa->getStatus() == True): ?>
-                <td class="text-center"> <!-- Centraliza o texto da célula de Status -->
+                <td class="text-center"> 
                     <span class="badge bg-success">Concluída</span>
                 </td>
             <?php else: ?>
-                <td class="text-center"> <!-- Centraliza o texto da célula de Status -->
+                <td class="text-center"> 
                     <span class="badge bg-secondary">Pendente</span>
                 </td>
             <?php endif; ?>
-            <td class="text-center"> <!-- Centraliza o texto da célula de Responsável -->
+            <td class="text-center"> 
                 <span class="badge bg-dark"><?php echo $tarefa->getUsuario()->getNome(); ?></span>
             </td>
-            <td class="text-center"> <!-- Centraliza o texto da célula de Ação -->
-                <div class="d-flex gap-2 justify-content-center"> <!-- Alinha botões horizontalmente e centraliza -->
+            <td class="text-center"> 
+                <div class="d-flex gap-2 justify-content-center"> 
                     <a class="btn btn-outline-info btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'edit', 'id' => $tarefa->getId())); ?>">
                         <i class="bi bi-pencil-square"></i> Editar
                     </a>

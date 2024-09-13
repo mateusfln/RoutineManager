@@ -55,12 +55,6 @@ class Tarefa {
      */
     protected $usuario;
 
-    // public function __construct($options = null) {
-    //     //var_dump($options);die;
-    //     Configurator::configure($this, $options);
-    // }
-    
-
     public function getId() {
         return $this->id;
     }
