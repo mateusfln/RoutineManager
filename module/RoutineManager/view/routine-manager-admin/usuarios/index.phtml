@@ -2,42 +2,43 @@
 <br />
 
 <p>
-    <a class="btn btn-outline-success " href="<?php echo $this->url('routinemanager-admin',array('controller'=>'usuarios','action'=>'new')); ?>">
-    <i class="bi bi-plus-square"></i>
-        Novo
+    <a class="btn btn-outline-success" href="<?php echo $this->url('routinemanager-admin', array('controller' => 'usuarios', 'action' => 'new')); ?>">
+        <i class="bi bi-plus-square"></i> Novo
     </a>
 </p>
 
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Ação</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col" class="text-end">Ações</th>
         </tr>
-    <thead>
-    
-    <?php $numberOfRegisters = 0; foreach($this->data as $usuario): ?>
-    <tr>
-        <td><?php echo $usuario->getId(); ?></td>
-        <td><?php echo $usuario->getNome(); ?></td>
-        <td><?php echo $usuario->getEmail(); ?></td>
-        <td>
-            <a  class="btn btn-outline-info" href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'usuarios','action'=>'edit','id'=>$usuario->getId())); ?>"><i class="bi bi-pencil-square"></i>Editar</a>
-            <a  class="btn btn-outline-danger" href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'usuarios','action'=>'delete','id'=>$usuario->getId())); ?>"><i class="bi bi-trash3"></i>Deletar</a>
-        </td>
-    </tr>
-    <?php $numberOfRegisters += 1;?>
-    <?php endforeach; ?>
-    
+    </thead>
+    <tbody>
+        <?php $numberOfRegisters = 0; foreach ($this->data as $usuario): ?>
+        <tr>
+            <td><?php echo $usuario->getId(); ?></td>
+            <td><?php echo $usuario->getNome(); ?></td>
+            <td><?php echo $usuario->getEmail(); ?></td>
+            <td class="text-end">
+                <a class="btn btn-outline-info btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'usuarios', 'action' => 'edit', 'id' => $usuario->getId())); ?>">
+                    <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a class="btn btn-outline-danger btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'usuarios', 'action' => 'delete', 'id' => $usuario->getId())); ?>">
+                    <i class="bi bi-trash3"></i> Deletar
+                </a>
+            </td>
+        </tr>
+        <?php $numberOfRegisters += 1; ?>
+        <?php endforeach; ?>
+    </tbody>
 </table>
 <br />
 
 <?php
-    if ($this->data->getDefaultItemCountPerPage() <= $numberOfRegisters | $this->data->getCurrentPageNumber() !=1){
-        echo $this->paginationControl($this->data,'Sliding','paginator'); 
-    }
+if ($this->data->getDefaultItemCountPerPage() <= $numberOfRegisters || $this->data->getCurrentPageNumber() != 1) {
+    echo $this->paginationControl($this->data, 'Sliding', 'paginator');
+}
 ?>

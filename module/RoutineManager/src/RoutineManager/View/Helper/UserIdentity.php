@@ -4,7 +4,7 @@ namespace RoutineManager\View\Helper;
 
 use Zend\Authentication\AuthenticationService;
 use Zend\Form\View\Helper\AbstractHelper;
-use Zend\Session\Storage\SessionStorage;
+use Zend\Authentication\Storage\Session as SessionStorage;
 
 class UserIdentity extends AbstractHelper
 {

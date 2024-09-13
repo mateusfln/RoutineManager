@@ -26,7 +26,7 @@ class Usuario extends Form {
                 'label' => 'Nome'
             ),
             'attributes' => array(
-                'placeholder' => 'Entre com o nome',
+                'placeholder' => 'Digite o nome',
                 'class' => 'form-control mb-2',
             )
         ));
@@ -38,7 +38,7 @@ class Usuario extends Form {
                 'label' => 'Email'
             ),
             'attributes' => array(
-                'placeholder' => 'Entre com o email',
+                'placeholder' => 'Digite o email',
                 'class' => 'form-control mb-2',
             )
         ));
@@ -51,6 +51,7 @@ class Usuario extends Form {
             ),
             'attributes' => array(
                 'type' => 'password',
+                'placeholder' => 'Digite a senha',
                 'class' => 'form-control mb-2',
             )
         ));
@@ -60,7 +61,7 @@ class Usuario extends Form {
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
                 'value' => 'Salvar',
-                'class' => 'btn-success bg-success form-control mb-2',
+                'class' => 'btn btn-success form-control mb-2',
             )
         ));
     }

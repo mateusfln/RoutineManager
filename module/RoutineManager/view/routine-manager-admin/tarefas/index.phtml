@@ -2,57 +2,59 @@
 <br />
 
 <p>
-    <a class="btn btn-outline-success " href="<?php echo $this->url('routinemanager-admin',array('controller'=>'tarefas','action'=>'new')); ?>">
-    <i class="bi bi-plus-square"></i>
-        Novo
+    <a class="btn btn-outline-success" href="<?php echo $this->url('routinemanager-admin', array('controller' => 'tarefas', 'action' => 'new')); ?>">
+        <i class="bi bi-plus-square"></i> Novo
     </a>
 </p>
 
 <table class="table table-hover">
-    
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Descrição</th>
-            <th>Status</th>
-            <th>Responsável</th>
-            <th>Ação</th>
+            <th scope="col">ID</th>
+            <th scope="col">Título</th>
+            <th scope="col">Descrição</th>
+            <th scope="col" class="text-center">Status</th> <!-- Centraliza o texto da coluna Status -->
+            <th scope="col" class="text-center">Responsável</th> <!-- Centraliza o texto da coluna Responsável -->
+            <th scope="col" class="text-center">Ação</th> <!-- Centraliza o texto da coluna Ação -->
         </tr>
     </thead>
-    
-    <?php $numberOfRegisters = 0; foreach($this->data as $tarefa): ?>
-    <tr>
-        <td><?php echo $tarefa->getId(); ?></td>
-        <td><?php echo $tarefa->getTitulo(); ?></td>
-        <td><?php echo $tarefa->getDescricao(); ?></td>
-        <?php if($tarefa->getStatus() == True):?>
-            <td>
-                <span class="badge badge-pill bg-success">Concluída</span>    
+    <tbody>
+        <?php $numberOfRegisters = 0; foreach ($this->data as $tarefa): ?>
+        <tr>
+            <td><?php echo $tarefa->getId(); ?></td>
+            <td><?php echo $tarefa->getTitulo(); ?></td>
+            <td><?php echo $tarefa->getDescricao(); ?></td>
+            <?php if ($tarefa->getStatus() == True): ?>
+                <td class="text-center"> <!-- Centraliza o texto da célula de Status -->
+                    <span class="badge bg-success">Concluída</span>
+                </td>
+            <?php else: ?>
+                <td class="text-center"> <!-- Centraliza o texto da célula de Status -->
+                    <span class="badge bg-secondary">Pendente</span>
+                </td>
+            <?php endif; ?>
+            <td class="text-center"> <!-- Centraliza o texto da célula de Responsável -->
+                <span class="badge bg-dark"><?php echo $tarefa->getUsuario()->getNome(); ?></span>
             </td>
-        <?php else:?>
-            <td>
-                <span class="badge badge-pill bg-secondary">Pendente</span>    
+            <td class="text-center"> <!-- Centraliza o texto da célula de Ação -->
+                <div class="d-flex gap-2 justify-content-center"> <!-- Alinha botões horizontalmente e centraliza -->
+                    <a class="btn btn-outline-info btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'edit', 'id' => $tarefa->getId())); ?>">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <a class="btn btn-outline-danger btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'delete', 'id' => $tarefa->getId())); ?>">
+                        <i class="bi bi-trash3"></i> Deletar
+                    </a>
+                </div>
             </td>
-        <?php endif;?>
-        <td>
-        <span class="badge badge-pill bg-dark"><?php echo $tarefa->getUsuario()->getNome();?></span>
-        </td>
-        <td>
-            <a  class="btn btn-outline-info" href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'tarefas','action'=>'edit','id'=>$tarefa->getId())); ?>"><i class="bi bi-pencil-square"></i>Editar</a>
-            <a  class="btn btn-outline-danger" href="<?php echo $this->url('routinemanager-admin-interna',
-                    array('controller'=>'tarefas','action'=>'delete','id'=>$tarefa->getId())); ?>"><i class="bi bi-trash3"></i>Deletar</a>
-        </td>
-    </tr>
-    <?php $numberOfRegisters += 1;?>
-    <?php endforeach; ?>
-    
+        </tr>
+        <?php $numberOfRegisters += 1; ?>
+        <?php endforeach; ?>
+    </tbody>
 </table>
 <br />
 
 <?php
-    if ($this->data->getDefaultItemCountPerPage() <= $numberOfRegisters | $this->data->getCurrentPageNumber() !=1){
-        echo $this->paginationControl($this->data,'Sliding','paginator'); 
-    }
+if ($this->data->getDefaultItemCountPerPage() <= $numberOfRegisters || $this->data->getCurrentPageNumber() != 1) {
+    echo $this->paginationControl($this->data, 'Sliding', 'paginator');
+}
 ?>

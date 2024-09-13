@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang='en'>
-
 <head>
   <meta charset='utf-8' />
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.3.1/index.global.min.js'></script>
   <!-- CSS for full calender -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
   <!-- JS for jQuery -->
@@ -108,7 +105,7 @@
     $('#calendar').fullCalendar({
       defaultView: 'month',
       timeZone: 'local',
-      editable: true,
+      editable: false,
       selectable: true,
       selectHelper: true,
       select: function(start, end) {
@@ -118,9 +115,7 @@
       },
       events: events,
       eventRender: function(event, element, view) {
-        element.bind('click', function() {
-          alert(event.event_id);
-        });
+        element.find('.fc-title').text(event.title);
       }
     });
   });
@@ -150,6 +145,7 @@
         status: status
       }),
       success: function(response) {
+        console.log('Response:', response); // Log the full response object
         $('#event_entry_modal').modal('hide');
         if (response.status == true) {
           alert(response.msg);
@@ -158,9 +154,8 @@
           alert(response.msg);
         }
       },
-      error: function(xhr, status) {
-        console.log('ajax error = ' + xhr.statusText);
-        alert(response.msg);
+      error: function(xhr, status, error) {
+        console.log('AJAX Error:', xhr.status, status, error); // Log detailed error info
       }
     });
     return false;

@@ -17,15 +17,10 @@ class AuthController extends AbstractActionController {
         $form = new LoginForm;
         $error = false;
         $request = $this->getRequest();
-        // echo '<pre/>';
-        // var_dump($request);
-        // var_dump($form);
-        // die;
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $data = $request->getPost()->toArray();
-                
                 $auth = new AuthenticationService;
                 $sessionStorage = new SessionStorage("RoutineManagerAdmin");
                 $auth->setStorage($sessionStorage);
@@ -33,18 +28,13 @@ class AuthController extends AbstractActionController {
                 $authAdapter = $this->getServiceLocator()->get('RoutineManager\Auth\Adapter');
                 $authAdapter->setUsername($data['email'])
                 ->setPassword($data['password']);
-                
-                //var_dump($authAdapter);die;
                 $result = $auth->authenticate($authAdapter);
-                // echo '<pre>';
-                // var_dump($auth->authenticate($authAdapter));
-                // die;
+
                 if ($result->isValid()) {
                     $sessionStorage->write($auth->getIdentity()['user'], null);
-
                     return $this->redirect()->toRoute("routinemanager-admin", array('controller' => 'tarefas'));
-                }else
-                    $error = true;
+                }
+                $error = true;
             }
         }
         
@@ -55,7 +45,6 @@ class AuthController extends AbstractActionController {
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage('RoutineManagerAdmin'));
         $auth->clearIdentity();
-        
         return $this->redirect()->toRoute('routinemanager-admin-auth');
     }
 

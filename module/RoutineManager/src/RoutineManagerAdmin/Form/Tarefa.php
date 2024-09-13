@@ -104,7 +104,7 @@ class Tarefa extends Form {
             'type' => 'Zend\Form\Element\Submit',
             'attributes' => array(
                 'value' => 'Salvar',
-                'class' => 'btn-success form-control bg-success'
+                'class' => 'btn btn-success form-control'
                 )
         ));
     }
