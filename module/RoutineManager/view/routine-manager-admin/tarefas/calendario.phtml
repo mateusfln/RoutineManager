@@ -132,11 +132,11 @@
     var dataHoraInicio = $("#tarefa-inicio").val();
     var dataHoraFim = $("#tarefa-fim").val();
     var status = $("#tarefa-status").val();
+    $('#event_entry_modal').modal('hide');
     if (titulo == "" || dataHoraInicio == "" || dataHoraFim == "" || usuario_id =="" || descricao=="" || status=="") {
       alert("Por favor, preencha todos os campos.");
       return false;
     }
-
     $.ajax({
       url: "calendario",
       type: "POST",

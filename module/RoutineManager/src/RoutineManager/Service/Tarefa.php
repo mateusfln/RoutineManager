@@ -36,11 +36,16 @@ class Tarefa extends AbstractService {
 
     public function update(array $data) {
         $entity = $this->em->getReference($this->entity, $data['id']);
-        $entity = Configurator::configure($entity,$data);
-        
-        $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario']);
+
+        $entity->setTitulo($data['titulo']);
+        $entity->setDescricao($data['descricao']);
+        $entity->setStatus($data['status']);
+        $entity->setDataHoraInicio(new \DateTime($data['dataHoraInicio']));
+        $entity->setDataHoraFim(new \DateTime($data['dataHoraFim']));
+        $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario_id']);
         $entity->setUsuario($usuario);
-        
+        // var_dump($entity);die;
+
         $this->em->persist($entity);
         $this->em->flush();
         

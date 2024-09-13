@@ -10,10 +10,6 @@ class TarefaFilter extends InputFilter {
         $this->add(array(
             'name' => 'titulo',
             'required' => true,
-            'filters' => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
-            ),
             'validators' => array(
                 array(
                     'name' => 'NotEmpty',

@@ -37,7 +37,7 @@
 <br />
 
 <?php
-    if ($this->data->getDefaultItemCountPerPage() <= $numberOfRegisters){
+    if ($this->data->getDefaultItemCountPerPage() <= $numberOfRegisters | $this->data->getCurrentPageNumber() !=1){
         echo $this->paginationControl($this->data,'Sliding','paginator'); 
     }
 ?>
