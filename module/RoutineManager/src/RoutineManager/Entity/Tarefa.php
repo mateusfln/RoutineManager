@@ -38,13 +38,13 @@ class Tarefa {
     protected $status;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @var \Datetime
      */
     protected $dataHoraInicio;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @var \Datetime
      */
     protected $dataHoraFim;
@@ -55,9 +55,11 @@ class Tarefa {
      */
     protected $usuario;
 
-    public function __construct($options = null) {
-        Configurator::configure($this, $options);
-    }
+    // public function __construct($options = null) {
+    //     //var_dump($options);die;
+    //     Configurator::configure($this, $options);
+    // }
+    
 
     public function getId() {
         return $this->id;
@@ -103,7 +105,7 @@ class Tarefa {
         return $this->dataHoraInicio;
     }
 
-    public function setDataHoraInicio($dataHoraInicio) {
+    public function setDataHoraInicio(\DateTimeInterface $dataHoraInicio) {
         $this->dataHoraInicio = $dataHoraInicio;
     }
 
@@ -111,7 +113,7 @@ class Tarefa {
         return $this->dataHoraFim;
     }
 
-    public function setDataHoraFim($dataHoraFim) {
+    public function setDataHoraFim(\DateTimeInterface $dataHoraFim) {
         $this->dataHoraFim = $dataHoraFim;
     }
 
@@ -123,7 +125,7 @@ class Tarefa {
             'status' => $this->getStatus(),
             'dataHoraInicio' => $this->getDataHoraInicio(),
             'dataHoraFim' => $this->getDataHoraFim(),
-            'usuario' => $this->getUsuario()->getId(),
+            'usuario_id' => $this->getUsuario()->getId(),
         );
     }
 

@@ -18,6 +18,7 @@ class TarefasController extends CrudController
 
     public function newAction()
     {
+        
         $form = $this->getServiceLocator()->get($this->form);
 
         $request = $this->getRequest();
@@ -68,13 +69,13 @@ class TarefasController extends CrudController
             $request = $this->getRequest();
             $data = $request->getPost()->toArray();
             foreach ($data as $key => $value) {
+                //echo '<pre> data:';var_dump(json_decode($key, true));die;
+
                 $form->setData(json_decode($key, true));
-                // echo '<pre/>';
-                // var_dump(json_decode($key, true));
-                // die;
                 if ($form->isValid()) {
                     $service = $this->getServiceLocator()->get($this->service);
-                    //echo '<pre>';var_dump($request->getPost()->toArray());die;
+                    // echo '<pre>';var_dump($request->getPost()->toArray());die;
+                    // var_dump($form->isValid());die;
                     $service->insert(json_decode($key, true));
 
                     return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));

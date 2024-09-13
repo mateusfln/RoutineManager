@@ -25,15 +25,16 @@ class AuthController extends AbstractActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $data = $request->getPost()->toArray();
-
+                
                 $auth = new AuthenticationService;
                 $sessionStorage = new SessionStorage("RoutineManagerAdmin");
                 $auth->setStorage($sessionStorage);
-
+                
                 $authAdapter = $this->getServiceLocator()->get('RoutineManager\Auth\Adapter');
                 $authAdapter->setUsername($data['email'])
-                            ->setPassword($data['password']);
+                ->setPassword($data['password']);
                 
+                //var_dump($authAdapter);die;
                 $result = $auth->authenticate($authAdapter);
                 // echo '<pre>';
                 // var_dump($auth->authenticate($authAdapter));

@@ -127,12 +127,12 @@
 
   function salvarTarefa() {
     var titulo = $("#tarefa-titulo").val();
-    var usuario = $("#tarefa-usuario_id").val();
+    var usuario_id = $("#tarefa-usuario_id").val();
     var descricao = $("#tarefa-descricao").val();
     var dataHoraInicio = $("#tarefa-inicio").val();
     var dataHoraFim = $("#tarefa-fim").val();
     var status = $("#tarefa-status").val();
-    if (titulo == "" || dataHoraInicio == "" || dataHoraFim == "" || usuario =="" || descricao=="" || status=="") {
+    if (titulo == "" || dataHoraInicio == "" || dataHoraFim == "" || usuario_id =="" || descricao=="" || status=="") {
       alert("Por favor, preencha todos os campos.");
       return false;
     }
@@ -143,7 +143,7 @@
       dataType: 'json',
       data: JSON.stringify({
         titulo: titulo,
-        usuario: usuario,
+        usuario_id: usuario_id,
         descricao: descricao,
         dataHoraInicio: dataHoraInicio,
         dataHoraFim: dataHoraFim,

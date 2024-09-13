@@ -13,11 +13,19 @@ class Tarefa extends AbstractService {
     }
     
     public function insert(array $data) {
-        $entity = new $this->entity($data);
+
+        $entity = new \RoutineManager\Entity\Tarefa();
+        $entity->setTitulo($data['titulo']);
+        $entity->setDescricao($data['descricao']);
+        $entity->setStatus($data['status']);
+        $entity->setDataHoraInicio(new \DateTime($data['dataHoraInicio']));
+        $entity->setDataHoraFim(new \DateTime($data['dataHoraFim']));
+
+        // var_dump($entity);die;
         
-        $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario']);
+        $usuario = $this->em->getReference("RoutineManager\Entity\Usuario", $data['usuario_id']);
+        // var_dump($usuario);die;
         $entity->setUsuario($usuario);
-        //var_dump($entity);die;
         
         $this->em->persist($entity);
         $this->em->flush();

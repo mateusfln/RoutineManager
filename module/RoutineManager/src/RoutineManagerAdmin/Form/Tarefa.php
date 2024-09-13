@@ -20,7 +20,7 @@ class Tarefa extends Form {
 
         $usuario = new Select();
         $usuario->setLabel("Usuario")
-                ->setName("usuario")
+                ->setName("usuario_id")
                 ->setAttributes(array('class' => 'form-select mb-2'))
                 ->setOptions(array('value_options' => $this->usuarios)
         );
