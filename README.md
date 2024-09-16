@@ -1,118 +1,67 @@
-ZendSkeletonApplication
-=======================
+# Desafio Zend - To-do list + Autenticação + Calendário
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+## Descrição do Projeto
 
-Installation using Composer
----------------------------
+O objetivo deste desafio é construir uma aplicação web que permita gerenciar tarefas, com autenticação de usuários e integração com um calendário para a visualização e administração dessas tarefas. A aplicação deve oferecer as seguintes funcionalidades:
 
-The easiest way to create a new ZF2 project is to use [Composer](https://getcomposer.org/). If you don't have it already installed, then please install as per the [documentation](https://getcomposer.org/doc/00-intro.md).
+- Gerenciar dados da aplicação apenas com devida autenticação
+- Visualizar dados das tarefas atraves de um calendário que irá mostrar os períodos das tarefas e permitirá criar tarefas novas ao selecionar um periodo no calendário
+## Tecnologias Utilizadas
 
+- **PHP >=5.6**: Linguagem de programação utilizada para o desenvolvimento da aplicação.
+- **MySQL 5.7**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 
-Create your new ZF2 project:
+## Como Executar o Projeto
 
-    composer create-project -n -sdev zendframework/skeleton-application path/to/install
+1. Clone este repositório em sua máquina local:
 
+```
+git clone https://github.com/mateusfln/RoutineManager.git
+```
 
+2. Navegue até o diretório do projeto:
 
-### Installation using a tarball with a local Composer
+```
+cd RoutineManager
+```
 
-If you don't have composer installed globally then another way to create a new ZF2 project is to download the tarball and install it:
+3. instale as dependencias do composer no projeto
 
-1. Download the [tarball](https://github.com/zendframework/ZendSkeletonApplication/tarball/master), extract it and then install the dependencies with a locally installed Composer:
+```
+composer update
 
-        cd my/project/dir
-        curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-    
+```
 
-2. Download composer into your project directory and install the dependencies:
+4. rode as migrations
 
-        curl -s https://getcomposer.org/installer | php
-        php composer.phar install
+```
+./vendor/bin/doctrine-module migrations:migrate
 
-If you don't have access to curl, then install Composer into your project as per the [documentation](https://getcomposer.org/doc/00-intro.md).
+```
 
-Web server setup
-----------------
+5. Navegue até a pasta public:
 
-### PHP CLI server
+```
+cd public/
+```
 
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root
-directory:
+6. Gere um servidor embutido do php:
 
-    php -S 0.0.0.0:8080 -t public/ public/index.php
+```
+//escolha a porta de sua preferencia
+php -S 127.0.0.1:8080
+```
 
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
+7. Acesse o endereço:
 
-**Note:** The built-in CLI server is *for development only*.
+```
+http://127.0.0.1:8080
 
-### Vagrant server
+```
 
-This project supports a basic [Vagrant](http://docs.vagrantup.com/v2/getting-started/index.html) configuration with an inline shell provisioner to run the Skeleton Application in a [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+## Login e senha:
 
-1. Run vagrant up command
-
-    vagrant up
-
-2. Visit [http://localhost:8085](http://localhost:8085) in your browser
-
-Look in [Vagrantfile](Vagrantfile) for configuration details.
-
-### Apache setup
-
-To setup apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
-
-    <VirtualHost *:80>
-        ServerName zf2-app.localhost
-        DocumentRoot /path/to/zf2-app/public
-        <Directory /path/to/zf2-app/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-            <IfModule mod_authz_core.c>
-            Require all granted
-            </IfModule>
-        </Directory>
-    </VirtualHost>
-
-### Nginx setup
-
-To setup nginx, open your `/path/to/nginx/nginx.conf` and add an
-[include directive](http://nginx.org/en/docs/ngx_core_module.html#include) below
-into `http` block if it does not already exist:
-
-    http {
-        # ...
-        include sites-enabled/*.conf;
-    }
+- **Email**: email@teste
+- **Senha**: teste
 
 
-Create a virtual host configuration file for your project under `/path/to/nginx/sites-enabled/zf2-app.localhost.conf`
-it should look something like below:
-
-    server {
-        listen       80;
-        server_name  zf2-app.localhost;
-        root         /path/to/zf2-app/public;
-
-        location / {
-            index index.php;
-            try_files $uri $uri/ @php;
-        }
-
-        location @php {
-            # Pass the PHP requests to FastCGI server (php-fpm) on 127.0.0.1:9000
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_param  SCRIPT_FILENAME /path/to/zf2-app/public/index.php;
-            include fastcgi_params;
-        }
-    }
-
-Restart the nginx, now you should be ready to go!
