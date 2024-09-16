@@ -42,19 +42,27 @@ class Module {
                 }, 98);
     }
 
-    public function init(ModuleManager $moduleManager) {
+    public function init(ModuleManager $moduleManager)
+    {
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
-        $sharedEvents->attach("RoutineManagerAdminAuth", 'dispatch', function($e) {
-                    $auth = new AuthenticationService;
-                    $auth->setStorage(new SessionStorage("RoutineManagerAdmin"));
-
-                    $controller = $e->getTarget();
-                    $matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
-
-                    if (!$auth->hasIdentity() and ($matchedRoute == "routinemanager-admin" or $matchedRoute == "routinemanager-admin-interna")) {
-                        return $controller->redirect()->toRoute('routinemanager-admin-auth');
-                    }
-                }, 99);
+        
+        $sharedEvents->attach("Zend\Mvc\Controller\AbstractActionController", 
+                MvcEvent::EVENT_DISPATCH,
+                array($this,'validaAuth'),100);
+    }
+    
+    public function validaAuth($e)
+    {
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage('RoutineManager'));
+        
+        $controller = $e->getTarget();
+        $matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
+        //var_dump($auth->getIdentity());die;
+        
+        if (!$auth->hasIdentity() and ($matchedRoute == "routinemanager-admin")) {
+            return $controller->redirect()->toRoute("routinemanager-admin-auth");
+        }
     }
 
     public function getServiceConfig() {

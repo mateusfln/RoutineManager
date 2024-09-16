@@ -6,6 +6,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'RoutineManager\Controller\Index' => 'RoutineManager\Controller\IndexController',
+            'RoutineManagerAdmin\Controller\Auth' => 'RoutineManagerAdmin\Controller\AuthController',
             'rm-admin/auth' => 'RoutineManagerAdmin\Controller\AuthController',
             'tarefas' => 'RoutineManagerAdmin\Controller\TarefasController',
             'usuarios' => 'RoutineManagerAdmin\Controller\UsuariosController',
@@ -58,8 +59,8 @@ return array(
                 'options' => array(
                     'route' => '/admin/auth/logout',
                     'defaults' => array(
+                        'controller' => 'RoutineManagerAdmin\Controller\Auth',
                         'action' => 'logout',
-                        'controller'=>'rm-admin/auth'
                     ),
                 ),
             ),
