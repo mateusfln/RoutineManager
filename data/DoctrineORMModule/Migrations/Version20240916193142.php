@@ -17,7 +17,9 @@ class Version20240916193142 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(
-            'CREATE TABLE usuarios (
+            'CREATE DATABASE IF NOT EXISTS RoutineManager;
+            USE RoutineManager;
+            CREATE TABLE usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nome VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
