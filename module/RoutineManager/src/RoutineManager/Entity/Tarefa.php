@@ -50,7 +50,7 @@ class Tarefa {
     protected $dataHoraFim;
 
     /**
-     * @ORM\ManyToOne(targetEntity="RoutineManager\Entity\Usuario", inversedBy="tarefa")
+     * @ORM\ManyToOne(targetEntity="RoutineManager\Entity\Usuario", inversedBy="tarefas")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     protected $usuario;
