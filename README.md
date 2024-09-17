@@ -16,50 +16,6 @@ O objetivo deste desafio é construir uma aplicação web que permita gerenciar 
 - **Docker**: Plataforma de contêineres que facilita a criação, distribuição e execução de aplicativos em contêineres.
 - **Docker Compose**: Ferramenta que auxilia na orquestragem de multiplos containeres docker ao mesmo tempo.
 
-## Como Executar o Projeto com Docker
-
-1. Certifique-se de ter o Docker instalado em sua máquina e também o Docker compose. Você pode baixar o Docker [aqui](https://www.docker.com/get-started) e o docker compose [aqui](https://docs.docker.com/compose/install/).
-
-2. Clone este repositório em sua máquina local:
-
-```
-git clone https://github.com/mateusfln/RoutineManager.git
-```
-
-3. Navegue até o diretório do projeto:
-
-```
-cd RoutineManager
-```
-
-4. Inicie os contêineres Docker:
-
-```
-docker-compose up
-```
-
-4. instale as dependencias do composer no projeto
-
-```
-composer update
-
-```
-
-5. rode as migrations
-
-```
-./vendor/bin/doctrine-module migrations:migrate
-
-```
-
-
-8. Acesse o endereço:
-
-```
-http://RoutineManager.localhost:8080
-
-```
-
 ## Como Executar o Projeto sem Docker
 
 1. Clone este repositório em sua máquina local:
@@ -107,6 +63,50 @@ php -S 127.0.0.1:8000
 
 ```
 http://127.0.0.1:8000
+
+```
+
+## Como Executar o Projeto com Docker
+
+1. Certifique-se de ter o Docker instalado em sua máquina e também o Docker compose. Você pode baixar o Docker [aqui](https://www.docker.com/get-started) e o docker compose [aqui](https://docs.docker.com/compose/install/).
+
+2. Clone este repositório em sua máquina local:
+
+```
+git clone https://github.com/mateusfln/RoutineManager.git
+```
+
+3. Navegue até o diretório do projeto:
+
+```
+cd RoutineManager
+```
+
+4. Inicie os contêineres Docker:
+
+```
+docker-compose up
+```
+
+4. instale as dependencias do composer no projeto
+
+```
+composer update
+
+```
+
+5. rode as migrations
+
+```
+./vendor/bin/doctrine-module migrations:migrate
+
+```
+
+
+8. Acesse o endereço:
+
+```
+http://RoutineManager.localhost:8080
 
 ```
 
