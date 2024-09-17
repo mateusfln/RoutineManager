@@ -8,12 +8,15 @@ O objetivo deste desafio é construir uma aplicação web que permita gerenciar 
 - Visualizar dados das tarefas atraves de um calendário que irá mostrar os períodos das tarefas e permitirá criar tarefas novas ao selecionar um periodo no calendário
 ## Tecnologias Utilizadas
 
+### Sem docker:
 - **PHP >=5.6**: Linguagem de programação utilizada para o desenvolvimento da aplicação.
 - **MySQL 5.7**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
+- **Composer 1.x**: Orquestrador de dependências.
+### Com docker:
 - **Docker**: Plataforma de contêineres que facilita a criação, distribuição e execução de aplicativos em contêineres.
 - **Docker Compose**: Ferramenta que auxilia na orquestragem de multiplos containeres docker ao mesmo tempo.
 
-## Como Executar o Projeto
+## Como Executar o Projeto com Docker
 
 1. Certifique-se de ter o Docker instalado em sua máquina e também o Docker compose. Você pode baixar o Docker [aqui](https://www.docker.com/get-started) e o docker compose [aqui](https://docs.docker.com/compose/install/).
 
@@ -56,6 +59,57 @@ composer update
 http://RoutineManager.localhost:8080
 
 ```
+
+## Como Executar o Projeto sem Docker
+
+1. Clone este repositório em sua máquina local:
+
+```
+git clone https://github.com/mateusfln/RoutineManager.git
+```
+
+2. Navegue até o diretório do projeto:
+
+```
+cd RoutineManager
+```
+
+3. instale as dependencias do composer no projeto
+
+```
+composer update
+
+```
+
+4. rode as migrations
+
+```
+./vendor/bin/doctrine-module migrations:migrate
+
+```
+
+5. Entre no diretório
+
+```
+cd public
+
+```
+
+6. rode o servidor embutido php
+
+```
+//escolha a porta de sua preferência
+php -S 127.0.0.1:8000
+
+```
+
+7. Acesse o endereço:
+
+```
+http://127.0.0.1:8000
+
+```
+
 
 ## Login e senha:
 
