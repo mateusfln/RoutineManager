@@ -117,7 +117,6 @@ cd ..
 
 ```
 composer install
-
 ```
 
 7. rode as migrations:
@@ -130,7 +129,6 @@ composer install
 
 ```
 http://localhost:84
-
 ```
 
 
