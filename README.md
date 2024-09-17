@@ -106,25 +106,30 @@ cd RoutineManager
 docker-compose up
 ```
 
-4. instale as dependencias do composer no projeto
+5. entre no container do php, dentro da raiz:
 
 ```
-composer update
+docker exec -it php_5_6 /bin/bash
+cd ..
+```
+
+6. instale as dependencias do composer no projeto
+
+```
+composer install
 
 ```
 
-5. rode as migrations
+7. rode as migrations:
 
 ```
 ./vendor/bin/doctrine-module migrations:migrate
-
 ```
-
 
 8. Acesse o endereço:
 
 ```
-http://RoutineManager.localhost:8080
+http://localhost:84
 
 ```
 
