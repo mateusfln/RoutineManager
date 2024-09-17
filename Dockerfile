@@ -7,7 +7,6 @@ WORKDIR /www
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN composer self-update --1
-RUN composer install
 
 
 RUN a2enmod rewrite
