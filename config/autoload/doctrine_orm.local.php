@@ -18,7 +18,7 @@ return array(
         ),
         'configuration' => array(
             'orm_default' => array(
-                'proxy_dir' => 'core/server/data/DoctrineORMModule/Proxy',
+                'proxy_dir' => 'data/DoctrineORMModule/Proxy',
                 'proxy_namespace' => 'DoctrineORMModule\Proxy',
             )
         )
