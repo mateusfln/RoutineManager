@@ -1,31 +1,42 @@
 version: '3'
 services:
-  web:
-    image: nginx:latest
-    container_name: nginx
-    restart: always
-    ports:
-      - "84:80"
-    volumes:
-      - .:/www
-      - ./site.conf:/etc/nginx/conf.d/site.conf
-    links:
-      - php
-      - db
   db:
     image: mysql:5.7
-    volumes:
-    - /var/lib/mysql
-    container_name: mysql
-    ports:
-    - "3366:3366"
-    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql_5_7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: RoutineManager
-  php:
-    build: .
-    container_name: php-fpm
     volumes:
-    - .:/www
+      - mysql_data:/var/lib/mysql
+      - ./dockerfiles/configs/mysql.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3366:3306"
+    networks:
+      - local_network
+
+  php:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-php5-6
+    image: my_php_5_6
+    container_name: php_5_6
+    restart: always
+    ports:
+      - "84:80"
+    volumes:
+      - .:/var/www
+      - ./public:/var/www/html
+      - ./dockerfiles/configs/php.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - local_network
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  local_network:
+    driver: bridge

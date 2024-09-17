@@ -1,29 +1,14 @@
-# Use a imagem PHP-FPM 7.4 como base
-FROM php:7.4-fpm
+FROM php:5.6-apache
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Instale as dependências do sistema e extensões PHP necessárias
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    libzip-dev \
-    unzip \
-    git \
-    curl \
-    && docker-php-ext-install pdo_mysql zip
+COPY configs/apache2-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
-# Instale o Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Defina o diretório de trabalho
 WORKDIR /www
 
-# Copie o código-fonte da aplicação para o contêiner
-COPY . /www
-
-# Instale as dependências do Composer
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer self-update --1
+RUN composer install
 
-# Exponha a porta padrão
-EXPOSE 9000
 
-# Comando padrão
-CMD ["php-fpm"]
+RUN a2enmod rewrite
+

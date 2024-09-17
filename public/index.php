@@ -5,9 +5,9 @@
  */
 chdir(dirname(__DIR__));
 ini_set('display_errors', true);
-
-// error_reporting(E_ALL|E_STRICT);
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+date_default_timezone_set('america/sao_paulo');
+error_reporting(E_ALL & ~E_USER_DEPRECATED);
+// error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 // Decline static file requests back to the PHP built-in webserver
 if (php_sapi_name() === 'cli-server') {
     $path = realpath(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
