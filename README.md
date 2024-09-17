@@ -29,41 +29,59 @@ git clone https://github.com/mateusfln/RoutineManager.git
 ```
 cd RoutineManager
 ```
+3. substitua as variaveis de ambiente do banco de dados pelas suas variaveis localizadas dentro dos respectivos caminhos:
 
-3. instale as dependencias do composer no projeto
+```
+config/autoload/doctrine_orm.local.php
+config/autoload/local.php
+```
+
+4. instale as dependencias do composer no projeto
 
 ```
 composer update
-
 ```
 
-4. rode as migrations
+5. rode as migrations
 
 ```
 ./vendor/bin/doctrine-module migrations:migrate
-
 ```
 
-5. Entre no diretório
+5.1 Caso occorra o erro
+
+```
+SQLSTATE[HY000] [1049] Unknown database 'RoutineManager'
+```
+
+5.2 crie o banco de dados manualmente
+
+```
+mysql -u root -p
+```
+```
+create database RoutineManager;
+exit;
+```
+5.3 rode as migrations como na etapa 5
+
+6. Entre no diretório
 
 ```
 cd public
-
 ```
 
-6. rode o servidor embutido php
+7. rode o servidor embutido php
 
 ```
 //escolha a porta de sua preferência
 php -S 127.0.0.1:8000
-
 ```
 
-7. Acesse o endereço:
+8. Acesse o endereço:
 
 ```
 http://127.0.0.1:8000
-
 ```
 
 ## Como Executar o Projeto com Docker
