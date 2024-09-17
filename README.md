@@ -9,7 +9,7 @@ O objetivo deste desafio é construir uma aplicação web que permita gerenciar 
 ## Tecnologias Utilizadas
 
 ### Sem docker:
-- **PHP >=5.6**: Linguagem de programação utilizada para o desenvolvimento da aplicação.
+- **PHP ^5.6 || ^7.0**: Linguagem de programação utilizada para o desenvolvimento da aplicação.
 - **MySQL 5.7**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **Composer 1.x**: Orquestrador de dependências.
 ### Com docker:
