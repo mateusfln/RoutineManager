@@ -106,11 +106,16 @@ cd RoutineManager
 docker-compose up
 ```
 
+4.1 Caso ocorra um erro de permissão de algum arquivo, execute o seguinte comando:
+
+```
+chmod -R 777 <nome do arquivo ou pasta>
+```
+
 5. entre no container do php, dentro da raiz:
 
 ```
 docker exec -it php_5_6 /bin/bash
-cd ..
 ```
 
 6. instale as dependencias do composer no projeto
