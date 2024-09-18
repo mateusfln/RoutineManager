@@ -9,7 +9,7 @@ O objetivo deste desafio é construir uma aplicação web que permita gerenciar 
 ## Tecnologias Utilizadas
 
 ### Sem docker:
-- **PHP >=5.6**: Linguagem de programação utilizada para o desenvolvimento da aplicação.
+- **PHP ^5.6 || ^7.0**: Linguagem de programação utilizada para o desenvolvimento da aplicação.
 - **MySQL 5.7**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as informações da aplicação.
 - **Composer 1.x**: Orquestrador de dependências.
 ### Com docker:
@@ -29,32 +29,26 @@ git clone https://github.com/mateusfln/RoutineManager.git
 ```
 cd RoutineManager
 ```
-3. substitua as variaveis de ambiente do banco de dados pelas suas variaveis localizadas dentro dos respectivos caminhos:
 
-```
-config/autoload/doctrine_orm.local.php
-config/autoload/local.php
-```
-
-4. instale as dependencias do composer no projeto
+3. instale as dependencias do composer no projeto
 
 ```
 composer update
 ```
 
-5. rode as migrations
+4. rode as migrations
 
 ```
 ./vendor/bin/doctrine-module migrations:migrate
 ```
 
-5.1 Caso occorra o erro
+4.1 Caso occorra o erro
 
 ```
 SQLSTATE[HY000] [1049] Unknown database 'RoutineManager'
 ```
 
-5.2 crie o banco de dados manualmente
+4.2 crie o banco de dados manualmente
 
 ```
 mysql -u root -p
@@ -63,22 +57,22 @@ mysql -u root -p
 create database RoutineManager;
 exit;
 ```
-5.3 rode as migrations como na etapa 5
+4.3 rode as migrations como na etapa 4
 
-6. Entre no diretório
+5. Entre no diretório
 
 ```
 cd public
 ```
 
-7. rode o servidor embutido php
+6. rode o servidor embutido php
 
 ```
 //escolha a porta de sua preferência
 php -S 127.0.0.1:8000
 ```
 
-8. Acesse o endereço:
+7. Acesse o endereço:
 
 ```
 http://127.0.0.1:8000
