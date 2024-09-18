@@ -7,50 +7,54 @@
     </a>
 </p>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Título</th>
-            <th scope="col">Descrição</th>
-            <th scope="col" class="text-center">Status</th> 
-            <th scope="col" class="text-center">Responsável</th> 
-            <th scope="col" class="text-center">Ação</th> 
-        </tr>
-    </thead>
-    <tbody>
-        <?php $numberOfRegisters = 0; foreach ($this->data as $tarefa): ?>
-        <tr>
-            <td><?php echo $tarefa->getId(); ?></td>
-            <td><?php echo $tarefa->getTitulo(); ?></td>
-            <td><?php echo $tarefa->getDescricao(); ?></td>
-            <?php if ($tarefa->getStatus() == True): ?>
-                <td class="text-center"> 
-                    <span class="badge bg-success">Concluída</span>
-                </td>
-            <?php else: ?>
-                <td class="text-center"> 
-                    <span class="badge bg-secondary">Pendente</span>
-                </td>
-            <?php endif; ?>
-            <td class="text-center"> 
-                <span class="badge bg-dark"><?php echo $tarefa->getUsuario()->getNome(); ?></span>
-            </td>
-            <td class="text-center"> 
-                <div class="d-flex gap-2 justify-content-center"> 
-                    <a class="btn btn-outline-info btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'edit', 'id' => $tarefa->getId())); ?>">
-                        <i class="bi bi-pencil-square"></i> Editar
-                    </a>
-                    <a class="btn btn-outline-danger btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'delete', 'id' => $tarefa->getId())); ?>">
-                        <i class="bi bi-trash3"></i> Deletar
-                    </a>
-                </div>
-            </td>
-        </tr>
-        <?php $numberOfRegisters += 1; ?>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col" class="text-center">Status</th>
+                <th scope="col" class="text-center">Responsável</th>
+                <th scope="col" class="text-center">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $numberOfRegisters = 0;
+            foreach ($this->data as $tarefa): ?>
+                <tr>
+                    <td><?php echo $tarefa->getId(); ?></td>
+                    <td><?php echo $tarefa->getTitulo(); ?></td>
+                    <td><?php echo $tarefa->getDescricao(); ?></td>
+                    <?php if ($tarefa->getStatus() == True): ?>
+                        <td class="text-center">
+                            <span class="badge bg-success">Concluída</span>
+                        </td>
+                    <?php else: ?>
+                        <td class="text-center">
+                            <span class="badge bg-secondary">Pendente</span>
+                        </td>
+                    <?php endif; ?>
+                    <td class="text-center">
+                        <span class="badge bg-dark"><?php echo $tarefa->getUsuario()->getNome(); ?></span>
+                    </td>
+                    <td class="text-center">
+                        <div class="d-flex gap-2 justify-content-center">
+                            <a class="btn btn-outline-info btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'edit', 'id' => $tarefa->getId())); ?>">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <a class="btn btn-outline-danger btn-sm" href="<?php echo $this->url('routinemanager-admin-interna', array('controller' => 'tarefas', 'action' => 'delete', 'id' => $tarefa->getId())); ?>">
+                                <i class="bi bi-trash3"></i> Deletar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <?php $numberOfRegisters += 1; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
 <br />
 
 <?php
