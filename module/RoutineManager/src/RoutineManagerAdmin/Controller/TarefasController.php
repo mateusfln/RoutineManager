@@ -65,16 +65,16 @@ class TarefasController extends CrudController
         if ($this->getRequest()->isPost()) {
             $form = $this->getServiceLocator()->get($this->form);
             $request = $this->getRequest();
-            $data = $request->getPost()->toArray();
-            foreach ($data as $key => $value) {
-                $form->setData(json_decode($key, true));
+            $data = $request->getPost()->toArray();            
+            $dataInJson = array_keys($data, 0)[0];
+            
+            $form->setData(json_decode($dataInJson, true));
                 if ($form->isValid()) {
                     $service = $this->getServiceLocator()->get($this->service);
-                    $service->insert(json_decode($key, true));
+                    $service->insert(json_decode($dataInJson, true));
 
                     return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
                 }
-            }
         }
 
         $events = $this->getEm()
