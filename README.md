@@ -36,19 +36,37 @@ cd RoutineManager
 composer update
 ```
 
-4. rode as migrations
+4. Mude as variáveis de ambiente para as do seu ambiente:
+
+```
+//dentro do arquivo config/autoload/doctrine_orm.local.php
+
+'params' => array(
+                    'host'     => '>INSIRA AQUI O HOST DO SEU BANCO DE DADOS<',
+                    'port'     => '>INSIRA AQUI A PORTA DO SEU BANCO DE DADOS<',
+                    'user'     => '>INSIRA AQUI O USUARIO DO SEU BANCO DE DADOS<',
+                    'password' => '>INSIRA AQUI A SENHA DO SEU BANCO DE DADOS<',
+                    'dbname'   => 'RoutineManager',
+                    'driverOptions' => array(
+                        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
+                    )
+                )
+
+```
+
+5. rode as migrations
 
 ```
 ./vendor/bin/doctrine-module migrations:migrate
 ```
 
-4.1 Caso occorra o erro
+5.1 Caso occorra o erro
 
 ```
 SQLSTATE[HY000] [1049] Unknown database 'RoutineManager'
 ```
 
-4.2 crie o banco de dados manualmente
+5.2 crie o banco de dados manualmente
 
 ```
 mysql -u root -p
@@ -57,22 +75,22 @@ mysql -u root -p
 create database RoutineManager;
 exit;
 ```
-4.3 rode as migrations como na etapa 4
+5.3 rode as migrations como na etapa 5
 
-5. Entre no diretório
+6. Entre no diretório
 
 ```
 cd public
 ```
 
-6. rode o servidor embutido php
+7. rode o servidor embutido php
 
 ```
 //escolha a porta de sua preferência
 php -S 127.0.0.1:8000
 ```
 
-7. Acesse o endereço:
+8. Acesse o endereço:
 
 ```
 http://127.0.0.1:8000
