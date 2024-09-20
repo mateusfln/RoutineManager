@@ -104,12 +104,21 @@
       },
       events: events,
       eventRender: function(event, element, view) {
-        element.find('.fc-title').text(event.title);
+        element.find('.fc-title').text(event.title + ' | | ' + event.responsavel  + ' | | ' + (event.status ? 'Concluída' : 'Pendente'));
+        
+        if (event.status === true) {
+          element.css('background-color', 'green');
+          element.css('border-color', 'green');
+        } else if (event.status === false) {
+          element.css('background-color', 'gray');
+          element.css('border-color', 'gray');
+        }
       }
     });
   });
-
+  
   function salvarTarefa() {
+    console.log($("#tarefa-titulo").val());
     var titulo = $("#tarefa-titulo").val();
     var usuario_id = $("#tarefa-usuario_id").val();
     var descricao = $("#tarefa-descricao").val();
@@ -134,7 +143,6 @@
         status: status
       }),
       success: function(response) {
-        console.log('Response:', response);
         $('#event_entry_modal').modal('hide');
         if (response.status == true) {
           alert(response.msg);
@@ -144,7 +152,8 @@
         }
       },
       error: function(xhr, status, error) {
-        console.log('AJAX Error:', xhr.status, status, error);
+        //console.log('AJAX Error:', xhr.status, status, error);
+        location.reload();
       }
     });
     return false;

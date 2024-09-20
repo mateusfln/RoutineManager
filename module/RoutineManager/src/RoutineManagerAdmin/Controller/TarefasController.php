@@ -67,11 +67,15 @@ class TarefasController extends CrudController
             $request = $this->getRequest();
             $data = $request->getPost()->toArray();            
             $dataInJson = array_keys($data, 0)[0];
+            $data = json_decode($dataInJson, true);
             
-            $form->setData(json_decode($dataInJson, true));
-                if ($form->isValid()) {
+            $data['titulo'] = str_replace('_', ' ', $data['titulo']);
+            $data['descricao'] = str_replace('_', ' ', $data['descricao']);
+            
+            $form->setData($data);
+                if ($form->isValid()) {;
                     $service = $this->getServiceLocator()->get($this->service);
-                    $service->insert(json_decode($dataInJson, true));
+                    $service->insert($data);
 
                     return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
                 }
@@ -90,9 +94,11 @@ class TarefasController extends CrudController
             $eventArray[] = [
                 'event_id' => $event->getId(),
                 'usuario' => $event->getUsuario()->getId(),
+                'responsavel' => $event->getUsuario()->getNome(),
                 'title' => $event->getTitulo(),
-                'start' => $event->getDataHoraInicio()->format('Y-m-d\TH:i:s'),
-                'end' => $event->getDataHoraFim()->format('Y-m-d\TH:i:s'),
+                'start' => $event->getDataHoraInicio()->format('Y-m-d'),
+                'end' => $event->getDataHoraFim()->format('Y-m-d'),
+                'status' => $event->getStatus()
             ];
         }
         $eventArray = json_encode($eventArray);
